@@ -1,0 +1,34 @@
+id,name,type,price,quantity,brand,suitage,material,author,isbn,publication_year,publisher,inputprice
+1,The Great Gatsby,Book,10.99,4,,,,F. Scott Fitzgerald,9780743273565.00,1925,Scribner,5.99
+2,To Kill a Mockingbird,Book,12.5,3,,,,Harper Lee,9780060935467.00,1960,Harper Perennial Modern Classics,7.5
+3,1984,Book,14.99,4,,,,George Orwell,9780451524935.00,1949,Signet Classics,9.99
+4,Harry Potter and the Sorcerer's Stone,Book,15.99,6,,,,J.K. Rowling,9780439708180.00,1997,Scholastic,10.99
+5,The Catcher in the Rye,Book,11.99,2,,,,J.D. Salinger,9780316769488.00,1951,"Little, Brown and Company",6.99
+6,Lego Star Wars Darth Vader,Toy,29.99,10,LEGO,6,Plastic,,,,,24.99
+7,Barbie Dreamhouse,Toy,199.99,4,Mattel,3,Plastic,,,,,194.99
+8,Hot Wheels 50 Car Pack,Toy,49.99,8,Mattel,3,Plastic,,,,,44.99
+9,Transformers Optimus Prime,Toy,35.99,5,Hasbro,5,Plastic,,,,,30.99
+10,Nerf Elite Disruptor,Toy,24.99,12,Hasbro,8,Plastic,,,,,19.99
+11,Parker Jotter Pen,Stationery,8.99,14,Parker,,Metal,,,,,3.99
+12,Moleskine Classic Notebook,Stationery,14.99,20,Moleskine,,Paper,,,,,9.99
+13,Staedtler Triplus Fineliner,Stationery,19.99,30,Staedtler,,Plastic,,,,,14.99
+14,Faber-Castell Colored Pencils,Stationery,15.99,22,Faber-Castell,,Wood,,,,,10.99
+15,Post-it Super Sticky Notes,Stationery,5.99,34,3M,,Paper,,,,,0.99
+16,The Alchemist,Book,9.99,12,,,,Paulo Coelhoooo,66666666666.00,1988,HarperOne,4.99
+17,Brave New World,Book,12.99,3,,,,Aldous Huxley,9780060850524.00,1932,Harper Perennial Modern Classics,7.99
+18,The Lord of the Rings: The Fellowship of the Ring,Book,15.99,4,,,,J.R.R. Tolkien,9780547928210.00,1954,Houghton Mifflin Harcourt,10.99
+19,The Hitchhiker's Guide to the Galaxy,Book,11.99,2,,,,Douglas Adams,9780345391803.00,1979,Del Rey,6.99
+20,The Da Vinci Code,Book,14.99,2,,,,Dan Brown,9780307474278.00,2003,Doubleday,9.99
+21,Rubik's Cube,Toy,19.99,20,Rubik,8,Plastic,,,,,14.99
+22,Play-Doh 36-Can Super Color Pack,Toy,29.99,13,Hasbro,4,Plastic,,,,,24.99
+23,My Little Pony Rainbow Dash,Toy,12.99,23,Hasbro,5,Plastic,,,,,7.99
+24,VTech Kidizoom Camera,Toy,49.99,7,VTech,3,Plastic,,,,,44.99
+25,Melissa & Doug Wooden Blocks,Toy,24.99,10,Melissa & Doug,5,Wood,,,,,19.99
+26,Bic Cristal Ball Pen,Stationery,0.99,99,Bic,,Plastic,,,,,-4.01
+27,Leuchtturm1917 Notebook,Stationery,18.99,13,Leuchtturm1917,,Paper,,,,,13.99
+28,Pentel EnerGel Liquid Gel Pen,Stationery,2.49,30,Pentel,,Plastic,,,,,-2.51
+29,Sharpie Permanent,Stationery,8.99,19,Sharpie,,Plastic,,,,,3.99
+30,Quan,Toy,123,122,dell,12,plastic,,,,,118
+31,qq,Stationery,12,12,def,,wqewe,,,,,7
+33,yoyo,Toy,30,29,htvc,12,plastic,,,,,25
+34,dac nhan tam,Book,20,22,,,,dale carnegie,124531231.00,2012,Sbooks,15
