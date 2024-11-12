@@ -39,7 +39,7 @@ public class OrderImport extends Order{
     public void getOrderImport() {
         if (productsList != null){
             for (Product item : productsList) {
-                price += item.getInputPrice();
+                price += item.getInputPrice() * item.getQuantity();
             }
         }
 

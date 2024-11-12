@@ -11,3 +11,36 @@ ex20241111014,book,Effective Java,45.0,4,35.0,,,,"Joshua Bloch",978-0134686097,2
 ex20241111014,toy,Lego Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Chin
 ex20241111014,stationery,Notebook,3.5,6,2.0,BrandA,,Paper,,,,,Chin
 ex20241111015,book,Effective Java,45.0,170,35.0,,,,"Joshua Bloch",978-0134686097,2018,Addison-Wesley,Chin
+ex20241112016,toy,Lego Set,59.99,1,40.0,LEGO,5+,Plastic,,,,,Chin
+ex20241112016,stationery,Pencil,0.99,12,0.5,BrandC,,Wood,,,,,Chin
+im20241112003,toy,Doll,30.0,20,20.0,Disney,3+,Plastic,,,,,Jane Doe
+im20241112006,book,Java Concurrency in Practice,35.0,13,25.0,,,,Brian Goetz,978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241112006,book,Chin’s book,50.0,10,25.0,,,,Chinchin,213-982322821,2024,Chin’s nxb,Jane Doe
+im20241112007,book,Java Concurrency in Practice,35.0,13,25.0,,,,Brian Goetz,978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241112007,book,Chin’s book,50.0,10,25.0,,,,Chinchin,213-982322821,2024,Chin’s nxb,Jane Doe
+im20241112007,book,Java Concurrency in Practice,35.0,13,25.0,,,,Brian Goetz,978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241112007,book,Chin’s book,50.0,10,25.0,,,,Chinchin,213-982322821,2024,Chin’s nxb,Jane Doe
+im20241112008,book,Java Concurrency in Practice,35.0,13,25.0,,,,Brian Goetz,978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241112008,book,Chin’s book,50.0,10,25.0,,,,Chinchin,213-982322821,2024,Chin’s nxb,Jane Doe
+im20241112008,book,Java Concurrency in Practice,35.0,13,25.0,,,,Brian Goetz,978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241112008,book,Chin’s book,50.0,10,25.0,,,,Chinchin,213-982322821,2024,Chin’s nxb,Jane Doe
+im20241112008,book,Java Concurrency in Practice,35.0,13,25.0,,,,Brian Goetz,978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241112008,book,Chin’s book,50.0,10,25.0,,,,Chinchin,213-982322821,2024,Chin’s nxb,Jane Doe
+im20241112009,book,Java Concurrency in Practice,35.0,13,25.0,,,,Brian Goetz,978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241112009,book,Chin’s book,50.0,10,25.0,,,,Chinchin,213-982322821,2024,Chin’s nxb,Jane Doe
+im20241112010,book,Java Concurrency in Practice,35.0,13,25.0,,,,Brian Goetz,978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241112010,book,Chin’s book,50.0,10,25.0,,,,Chinchin,213-982322821,2024,Chin’s nxb,Jane Doe
+im20241112010,book,Java Concurrency in Practice,35.0,13,25.0,,,,Brian Goetz,978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241112010,book,Chin’s book,50.0,10,25.0,,,,Chinchin,213-982322821,2024,Chin’s nxb,Jane Doe
+im20241112011,book,Java Concurrency in Practice,35.0,13,25.0,,,,Brian Goetz,978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241112011,book,Chin’s book,50.0,10,25.0,,,,Chinchin,213-982322821,2024,Chin’s nxb,Jane Doe
+im20241112012,book,Java Concurrency in Practice,35.0,13,25.0,,,,Brian Goetz,978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241112012,book,Chin’s book,50.0,10,25.0,,,,Chinchin,213-982322821,2024,Chin’s nxb,Jane Doe
+im20241112012,book,Java Concurrency in Practice,35.0,13,25.0,,,,Brian Goetz,978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241112012,book,Chin’s book,50.0,10,25.0,,,,Chinchin,213-982322821,2024,Chin’s nxb,Jane Doe
+im20241112013,book,Java Concurrency in Practice,35.0,13,25.0,,,,Brian Goetz,978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241112013,book,Java Concurrency in Practice,35.0,13,25.0,,,,Brian Goetz,978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241112013,book,Chin’s book,50.0,10,25.0,,,,Chinchin,213-982322821,2024,Chin’s nxb,Jane Doe
+im20241112014,book,Java Concurrency in Practice,35.0,13,25.0,,,,Brian Goetz,978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241112014,book,Chin’s book,50.0,10,25.0,,,,Chinchin,213-982322821,2024,Chin’s nxb,Jane Doe
+im20241112014,book,book ,10.0,1,10.0,,,,c,20328732,2024,c,Jane Doe

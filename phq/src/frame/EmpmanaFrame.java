@@ -12,7 +12,7 @@ public class EmpmanaFrame extends JFrame {
 	private JTable employeeTable;
     private DefaultTableModel tableModel;
     private JButton addButton, editButton, removeButton, backButton;
-    String users = "/media/khanhtty/551473877464395A/OOPLAB/phq/src/user.csv";
+    String users = "/media/khanhtty/551473877464395A/MyPjOOP/phq/src/user.csv";
 	private ManagerFrame managerFrame;
 
     public EmpmanaFrame(ManagerFrame managerFrame) {

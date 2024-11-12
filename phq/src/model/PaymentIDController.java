@@ -5,7 +5,7 @@ import java.util.*;
 
 public class PaymentIDController {
 	
-    private static final String CSV_FILE_PATH = "/media/khanhtty/551473877464395A/OOPLAB/phq/src/payment.csv";
+    private static final String CSV_FILE_PATH = "/media/khanhtty/551473877464395A/MyPjOOP/phq/src/payment.csv";
     private static final String DATE_FORMAT = "yyyyMMdd";
 
     

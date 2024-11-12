@@ -61,6 +61,10 @@ public class Employee extends Person {
                         if (product != null) {
                             addProductToList(product);
                             newlyAddedProducts.add(product);
+
+                            OrderImport order = new OrderImport(newlyAddedProducts, this);
+                            order.getOrderImport();
+
                             addedProductsInfo.append(name).append(" - Quantity: ").append(quantity).append(" - Input Price: ").append(inputPrice).append("\n");
                        }
                     } catch (NumberFormatException e) {
@@ -69,14 +73,14 @@ public class Employee extends Person {
                 }
 
                 JOptionPane.showMessageDialog(employeeframe, addedProductsInfo.toString(), "Products Added Successfully", JOptionPane.INFORMATION_MESSAGE);
+                
             } catch (IOException e) {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(employeeframe, "Error reading from file: " + e.getMessage());
             }
         }
         // Them chuc nang xem lai hoa don truoc khi hoan tat order, in ra, ban co muon xem hoa don khong
-        OrderImport order = new OrderImport(newlyAddedProducts, this);
-        order.getOrderImport();
+        
     }
 
     public void addProductByHand() {
@@ -84,11 +88,19 @@ public class Employee extends Person {
         String[] types = {"Book", "Toy", "Stationery"};
         String type = (String) JOptionPane.showInputDialog(employeeframe, "Select Product Type:", "Product Selection",
                 JOptionPane.QUESTION_MESSAGE, null, types, types[0]);
+        if (type == null) return;
 
         String name = JOptionPane.showInputDialog("Product " + id, "Enter Product Name:");
+        if (name == null) return;
+
         String priceStr = JOptionPane.showInputDialog("Product " + id, "Enter Product Price:");
+        if (priceStr == null) return; 
+
         String quantityStr = JOptionPane.showInputDialog("Product " + id, "Enter Quantity:");
+        if (quantityStr == null) return;
+
         String inputPriceStr = JOptionPane.showInputDialog("Product " + id, "Enter Input Price:");
+        if (inputPriceStr == null) return;
 
         if (name != null && priceStr != null && quantityStr != null && type != null) {
             try {
@@ -100,20 +112,35 @@ public class Employee extends Person {
                 switch (type) {
                     case "Book":
                         String author = JOptionPane.showInputDialog(this, "Enter Author:");
+                        if (author == null) return; 
+
                         String publisher = JOptionPane.showInputDialog(this, "Enter Publisher:");
+                        if (publisher == null) return;
                         String isbn = JOptionPane.showInputDialog(this, "Enter ISBN:");
+                        if (isbn == null) return;
+
                         int publicationYear = Integer.parseInt(JOptionPane.showInputDialog(this, "Enter Publication Year:"));
                         product = new Book(String.valueOf(id), name, price, quantity, inputPrice, author, isbn, publicationYear, publisher);
                         break;
                     case "Toy":
                         String brand = JOptionPane.showInputDialog(this, "Enter Brand:");
+                        if (brand == null) return; 
+
                         String material = JOptionPane.showInputDialog(this, "Enter Material:");
+                        if (material == null) return;
+
                         String suitAge = JOptionPane.showInputDialog(this, "Enter Suitable Age:");
+                        if (suitAge == null) return;
+
                         product = new Toy(String.valueOf(id), name, price, quantity, inputPrice, brand, suitAge, material);
                         break;
                     case "Stationery":
                         String brandSta = JOptionPane.showInputDialog(this, "Enter Brand:");
+                        if (brandSta == null) return;
+
                         String materialSta = JOptionPane.showInputDialog(this, "Enter Material:");
+                        if (materialSta == null) return;
+
                         product = new Stationery(String.valueOf(id), name, price, quantity, inputPrice, brandSta, materialSta);
                         break;
                     default:
@@ -124,12 +151,12 @@ public class Employee extends Person {
                 addProductToList(product);
                 newlyAddedProducts.add(product);
                 JOptionPane.showMessageDialog(employeeframe, "Product added successfully.");
+                OrderImport order = new OrderImport(newlyAddedProducts, this);
+                order.getOrderImport();
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(employeeframe, "Invalid input for price or quantity.");
             }
-            // Them chuc nang xem lai hoa don truoc khi hoan tat order
-            OrderImport order = new OrderImport(newlyAddedProducts, this);
-            order.getOrderImport();
+            
         }
     }
 

@@ -44,7 +44,7 @@ public abstract class Order {
 	public abstract void getBill();
 
 	public void saveToCSV(String genId, List<Product> productsList, String employeeName) {
-        String filePath = "/media/khanhtty/551473877464395A/OOPLAB/phq/src/orders.csv";
+        String filePath = "/media/khanhtty/551473877464395A/MyPjOOP/phq/src/orders.csv";
         FileWriter desFile = null;
 
         try {

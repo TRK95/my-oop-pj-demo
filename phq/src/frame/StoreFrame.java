@@ -15,8 +15,8 @@ public class StoreFrame extends JFrame {
     private JTable importTable;
     private JTable expenseTable;
     private Manager manager;
-    private String ordersFilePath = "/media/khanhtty/551473877464395A/OOPLAB/phq/src/orders.csv";
-    private String expensesFilePath = "/media/khanhtty/551473877464395A/OOPLAB/phq/src/expense.csv";
+    private String ordersFilePath = "/media/khanhtty/551473877464395A/MyPjOOP/phq/src/orders.csv";
+    private String expensesFilePath = "/media/khanhtty/551473877464395A/MyPjOOP/phq/src/expense.csv";
     private JLabel totalBuyLabel;
     private JLabel totalSellLabel;
     private JLabel totalExpenseLabel;
@@ -203,7 +203,7 @@ public class StoreFrame extends JFrame {
         List<Object[]> data = new ArrayList<>();
 
         // Read the CSV file and load data into 'data' list using BufferedReader
-        try (BufferedReader reader = new BufferedReader(new FileReader("/media/khanhtty/551473877464395A/OOPLAB/phq/src/orders.csv"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("/media/khanhtty/551473877464395A/MyPjOOP/phq/src/orders.csv"))) {
             String line;
             // Skip the header row
             reader.readLine();
