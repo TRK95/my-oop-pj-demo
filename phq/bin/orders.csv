@@ -1,0 +1,13 @@
+ID,Type,Name,Price,Quantity,InputPrice,Brand,SuitAge,Material,Author,ISBN,PublicationYear,Publisher,Employee,
+im20241103002,book,Effective Java,45.0,10,35.0,Addison-Wesley,,,"Joshua Bloch",978-0134686097,2018,Addison-Wesley,Quan,
+im20241103001,book,Efective Java,45.0,10,30.0,Addison-Wesley,,,"Joshua Bloch",978-0134686097,2018,Addison-Wesley,Quan,
+ex20241102004,book,Java: The Complete Reference,60.0,5,50.0,,,,"Herbert Schildt",978-0134686097,2019,Oracle Press,Quan,
+
+ex20241111013,book,Effective Java,45.0,1,35.0,,,,"Joshua Bloch",978-0134686097,2018,Addison-Wesley,Chin
+ex20241111013,toy,Transformer Action Figure,30.0,4,20.0,Hasbro,8+,Plastic,,,,,Chin
+ex20241111013,stationery,Marker Set,8.0,3,5.0,BrandD,,Plastic,,,,,Chin
+ex20241111013,book,Cracking the Coding Interview,45.0,11,30.0,,,,"Gayle Laakmann McDowell",978-0984782850,2015,CareerMonk,Chin
+ex20241111014,book,Effective Java,45.0,4,35.0,,,,"Joshua Bloch",978-0134686097,2018,Addison-Wesley,Chin
+ex20241111014,toy,Lego Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Chin
+ex20241111014,stationery,Notebook,3.5,6,2.0,BrandA,,Paper,,,,,Chin
+ex20241111015,book,Effective Java,45.0,170,35.0,,,,"Joshua Bloch",978-0134686097,2018,Addison-Wesley,Chin
