@@ -9,7 +9,7 @@ public class OrderExport extends Order{
 	List<Product> productsList = new ArrayList<>();
 	private double price = 0;
 	private String id;
-	private Employee activEmployee ;
+	private Employee activEmployee = new Employee() ;
 	
 	public OrderExport() {
 	}

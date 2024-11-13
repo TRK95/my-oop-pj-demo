@@ -7,7 +7,7 @@ import java.util.*;
 public abstract class Order {
     private double price = 0;
 	private String id;
-	private Employee activeEployee ;
+	private Employee activeEployee = new Employee() ;
 	
 	public Order() {
 	}
