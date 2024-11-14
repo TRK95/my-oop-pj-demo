@@ -155,28 +155,23 @@ public class OrderExport extends Order{
 	    }
 	}
 	
+
+		
 	public void checkout(Employee employee) {
-	    double total = productsList.stream().mapToDouble(p -> p.getQuantity() * p.getPrice()).sum();
-	    System.out.print(total);
-
-	    if (total != 0.0) {
-	        Payment payment = new Payment(total, "export", employee.getName());
-	        boolean status = payment.processPayment();
-
-	        if (status) {
-	            setID(payment.getID());
-	            super.saveToCSV(getID(), productsList, employee.getName());
-	            getBill();
-	            employee.removeProductsFromList(productsList);
-	            productsList.clear();
-	        } else {
-	            JOptionPane.showMessageDialog(null, "Payment failed!");
-	        }
-	    } else {
-	        JOptionPane.showMessageDialog(null, "Empty Cart!");
-	    }
+        double total = productsList.stream().mapToDouble(p -> p.getQuantity() * p.getPrice()).sum();
+        if (total != 0 ) {
+			Payment payMent = new Payment(total, "export", employee.getName());
+			boolean status = payMent.processPayment();
+			if (!status) {
+				setID(payMent.getID());
+				super.saveToCSV(getID(), productsList, employee.getName());
+				getBill();
+				employee.removeProductsFromList(productsList);
+				productsList.clear();
+        }}else {
+        	JOptionPane.showMessageDialog(null, "Empty Cart !" );
+        }
 	}
-
 	@Override
 	public void getBill() {
 	    if (!this.productsList.isEmpty()) {

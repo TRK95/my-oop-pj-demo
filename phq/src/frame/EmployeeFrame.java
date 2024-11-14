@@ -99,8 +99,8 @@ public class EmployeeFrame extends JFrame {
         
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(addProductButton);
-        buttonPanel.add(backButton);
         buttonPanel.add(removeProductButton);
+        buttonPanel.add(backButton);
         buttonPanel.add(addToCartButton);
         buttonPanel.add(viewCartButton);
         buttonPanel.add(checkoutButton);
@@ -222,13 +222,11 @@ public class EmployeeFrame extends JFrame {
         if (selectedRow != -1) {
             String productId = (String) tableModel.getValueAt(selectedRow, 0);
             int productQuantity = Integer.parseInt((String) tableModel.getValueAt(selectedRow, 4));
-            String input = JOptionPane.showInputDialog("Nhập số lượng:");
+            String input = JOptionPane.showInputDialog("Enter quantity of " + (String) tableModel.getValueAt(selectedRow, 2) + " :");
 
             if (input == null) {
-                // User canceled the input dialog, so return without adding to cart
                 return;
             }
-
             int quantity = 0;
             try {
                 quantity = Integer.parseInt(input);

@@ -28,7 +28,7 @@ public class StoreFrame extends JFrame {
 	    setSize(1400, 800);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-	    JComboBox<String> monthComboBox = new JComboBox<>(new String[] {"All",
+	    JComboBox<String> monthComboBox = new JComboBox<>(new String[] {
 	        "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"
 	    });
 	    JTextField yearField = new JTextField(4);
@@ -125,7 +125,6 @@ public class StoreFrame extends JFrame {
         Map<String, double[]> outcomeSummary = new HashMap<>();
         Map<String, Double> expenseDetails = new HashMap<>();
 
-        // Load income and outcome data
         manager.loadData(Main.ordersFilePath, incomeSummary, outcomeSummary, selectedDatePrefix);
         manager.loadExpenses(Main.expensesFilePath, expenseDetails, selectedDatePrefix);
         
@@ -353,7 +352,7 @@ public class StoreFrame extends JFrame {
 	        while ((empLine = empReader.readLine()) != null) {
 	            String[] empValues = empLine.split(",");
 	            if (empValues.length > 3 && empValues[4].equals("Employee")) {
-	                employeeNames.add(empValues[3]); // Add employee name
+	                employeeNames.add(empValues[3]);
 	            }
 	        }
 	    } catch (IOException e) {
@@ -370,7 +369,6 @@ public class StoreFrame extends JFrame {
 	    tableFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	    tableFrame.setLayout(new BorderLayout());
 
-	    // North panel with filter options
 	    JPanel northPanel = new JPanel(new FlowLayout());
 	    JComboBox<String> monthComboBox = new JComboBox<>(new String[]{
 	        "All", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"
@@ -481,7 +479,6 @@ public class StoreFrame extends JFrame {
 	    tableFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	    tableFrame.setLayout(new BorderLayout());
 	    
-	    // North panel with filter options
 	    JPanel northPanel = new JPanel(new FlowLayout());
 	    JComboBox<String> typeComboBox = new JComboBox<>(new String[]{"All", "im", "ex"});
 	    JComboBox<String> methodComboBox = new JComboBox<>(new String[] {"All", "cash" , "card"});
@@ -509,8 +506,6 @@ public class StoreFrame extends JFrame {
 	    northPanel.add(filterButton);
 
 	    tableFrame.add(northPanel, BorderLayout.NORTH);
-
-	    // South panel with Exit button
 	    JPanel southPanel = new JPanel();
 	    southPanel.add(exitButton);
 	    tableFrame.add(southPanel, BorderLayout.SOUTH);

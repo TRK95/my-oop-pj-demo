@@ -79,22 +79,38 @@ public class EmpmanaFrame extends JFrame {
 
     private void addUser() {
         String id = JOptionPane.showInputDialog(this, "Enter ID:");
-
         String username = JOptionPane.showInputDialog(this, "Enter Username:");
+
+        if (isIdOrUsernameExist(id, username)) {
+            JOptionPane.showMessageDialog(this, "ID or Username already exists. Please enter a unique ID and Username.");
+            return;
+        }
+
         String password = JOptionPane.showInputDialog(this, "Enter Password:");
         String name = JOptionPane.showInputDialog(this, "Enter Name:");
-        
-        // Allow selection of role
+
         String[] roles = {"Employee", "Manager"};
         String role = (String) JOptionPane.showInputDialog(this, "Select Role:", "Role",
                 JOptionPane.QUESTION_MESSAGE, null, roles, roles[0]);
-        
+
         String phone = JOptionPane.showInputDialog(this, "Enter Phone:");
         String idCard = JOptionPane.showInputDialog(this, "Enter ID Card:");
 
         tableModel.addRow(new String[]{id, username, password, name, role, phone, idCard});
         saveUsersToFile();
     }
+
+    private boolean isIdOrUsernameExist(String id, String username) {
+        for (int i = 0; i < tableModel.getRowCount(); i++) {
+            String existingId = (String) tableModel.getValueAt(i, 0);
+            String existingUsername = (String) tableModel.getValueAt(i, 1);
+            if (existingId.equals(id) || existingUsername.equals(username)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     private void editUser() {
         int selectedRow = employeeTable.getSelectedRow();

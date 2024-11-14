@@ -21,12 +21,12 @@ ID,Type,Name,Price,Quantity,InputPrice,Brand,SuitAge,Material,Author,ISBN,Public
 20,toy,Transformer Action Figure,30.0,106,20.0,Hasbro,8+,Plastic,,,,
 21,stationery,Ruler,1.5,138,0.5,BrandJ,,Plastic,,,,
 22,book,The Clean Coder,45.0,9,35.0,,,,"Robert C. Martin",978-0136083238,2010,Prentice Hall
-23,toy,Dinosaur Figurine,18.0,25,15.0,BrandK,6+,Plastic,,,,
+23,toy,Dinosaur Figurine,18.0,23,15.0,BrandK,6+,Plastic,,,,
 24,stationery,Colored Pencils,5.0,75,3.0,BrandL,,Wood,,,,
 25,book,Introduction to Algorithms,85.0,3,70.0,,,,"Thomas H. Cormen",978-0262033848,2009,MIT Press
-26,toy,Play-Doh Set,20.0,15,12.0,Hasbro,3+,Plastic,,,,
+26,toy,Play-Doh Set,20.0,14,12.0,Hasbro,3+,Plastic,,,,
 27,stationery,Stapler,8.0,40,5.0,BrandM,,Plastic,,,,
-29,toy,Building Blocks,22.0,30,15.0,BrandN,4+,Wood,,,,
+29,toy,Building Blocks,22.0,29,15.0,BrandN,4+,Wood,,,,
 30,stationery,Post-It Notes,4.0,100,2.0,BrandO,,Paper,,,,
 31,book,Algorithms Unlocked,35.0,12,25.0,,,,"Thomas H. Cormen",978-0132290689,2013,Prentice Hall
 32,toy,Race Car Track,50.0,2,35.0,BrandP,5+,Plastic,,,,
@@ -35,7 +35,7 @@ ID,Type,Name,Price,Quantity,InputPrice,Brand,SuitAge,Material,Author,ISBN,Public
 35,toy,Action Figure Set,55.0,6,40.0,BrandR,7+,Plastic,,,,
 36,stationery,Glue Stick,3.0,200,1.5,BrandS,,Plastic,,,,
 37,book,The Pragmatic Programmer,50.0,5,40.0,,,,"Andrew Hunt",978-0135957059,2019,Addison-Wesley
-38,toy,Stuffed Animal,25.0,12,15.0,BrandT,3+,Fabric,,,,
+38,toy,Stuffed Animal,25.0,10,15.0,BrandT,3+,Fabric,,,,
 39,stationery,Index Cards,4.5,78,2.5,BrandU,,Paper,,,,
 40,book,Learn JavaScript,45.0,7,35.0,,,,"John Doe",978-0134677442,2019,Addison-Wesley
 41,toy,Play Kitchen Set,70.0,8,55.0,BrandV,3+,Plastic,,,,
@@ -46,7 +46,5 @@ ID,Type,Name,Price,Quantity,InputPrice,Brand,SuitAge,Material,Author,ISBN,Public
 46,book,Head First Java,50.0,6,40.0,,,,"Kathy Sierra",978-0596009205,2005,Addison-Wesley
 47,toy,Remote Control Helicopter,90.0,2,80.0,BrandZ,10+,Plastic,,,,
 48,stationery,Whiteboard Markers,10.0,30,6.0,BrandAA,,Plastic,,,,
-49,book,You Don't Know JS,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media
-50,toy,Wooden Train Set,40.0,12,30.0,BrandAB,3+,Wood,,,,
-51,book,Effective Java,45.0,40,35.0,,,,"Joshua Bloch",978-0134686097,2018,Addison-Wesley
-52,book,Efective Java,45.0,40,30.0,,,,"Joshua Bloch",978-0134686097,2018,Addison-Wesley
+49,book,You Don't Know JS,35.0,8,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media
+50,toy,Wooden Train Set,40.0,10,30.0,BrandAB,3+,Wood,,,,

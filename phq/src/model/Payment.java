@@ -62,9 +62,8 @@ public class Payment {
 	    panel.add(cardButton);
 	    dialog.add(panel);
 
-	    final boolean[] paymentStatus = {false}; // Use an array to modify status in inner class
+	    final boolean[] paymentStatus = {false};
 
-	    // Cash payment processing
 	    cashButton.addActionListener(e -> {
 	        CashPayment cash = new CashPayment(totalAmount, paymentID, employeeHandle);
 	        paymentStatus[0] = cash.processPayment();
@@ -72,7 +71,6 @@ public class Payment {
 	        dialog.dispose();
 	    });
 
-	    // Card payment processing
 	    cardButton.addActionListener(e -> {
 	        CardPayment card = new CardPayment(totalAmount, paymentID, employeeHandle);
 	        paymentStatus[0] = card.processPayment();
@@ -80,10 +78,8 @@ public class Payment {
 	        dialog.dispose();
 	    });
 
-	    // Display dialog and wait until a payment method is processed
 	    dialog.setVisible(true);
 
-	    // Set the main status based on payment outcome
 	    return paymentStatus[0];
 	}
 

@@ -9,14 +9,14 @@ public class CashPayment {
 
     private double amount;
     private String paymentID;
-    private boolean isCancelled; // Track if payment is canceled
+    private boolean isCancelled;
     private String employeeHandle;
 
     public CashPayment(double amount, String paymentID, String employeeHandle) 
     {
         this.amount = amount;
         this.paymentID = paymentID;
-        this.isCancelled = false; // Initially, payment is not canceled
+        this.isCancelled = false;
         this.employeeHandle = employeeHandle;
     }
 
@@ -48,9 +48,8 @@ public class CashPayment {
     {
         if (isCancelled == false) 
         {
-            isCancelled = true; // Mark the payment as canceled
+            isCancelled = true;
             
-            // log cancellation in CSV
             try 
             {
             	String data[] = new String[]{paymentID, employeeHandle, "cash", "false"};
@@ -79,14 +78,11 @@ public class CashPayment {
     public static String generateHash(String[] paymentData) 
     {
         try {
-            // join string elements in array to a union string
             String input = String.join(",", paymentData);
 
-            // use SHA-256 to create hash
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             byte[] hashBytes = md.digest(input.getBytes());
 
-            // change hash to hex-string
             StringBuilder hexString = new StringBuilder();
             for (byte b : hashBytes) 
             {
@@ -105,7 +101,6 @@ public class CashPayment {
 
     public boolean processPayment() 
     {
-        // Display confirmation dialog to continue with the payment
         int userChoice = JOptionPane.showConfirmDialog(null, 
             "Do you wish to continue with your payment?", 
             "Payment Confirmation", 

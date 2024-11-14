@@ -64,7 +64,6 @@ public class CardPayment {
             JOptionPane.showMessageDialog(null, "Payment with ID " + paymentID + " has been canceled.", 
                     "Payment Canceled", JOptionPane.INFORMATION_MESSAGE);
             
-            // log cancellation in CSV
             try 
             {
             	String data[] = new String[]{paymentID, String.format(employeeHandle), "card", "false"};
@@ -92,14 +91,11 @@ public class CardPayment {
     public static String generateHash(String[] paymentData) 
     {
         try {
-            // join string elements in array to a union string
             String input = String.join(",", paymentData);
 
-            // use SHA-256 to create hash
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             byte[] hashBytes = md.digest(input.getBytes());
 
-            // change hash to hex-string
             StringBuilder hexString = new StringBuilder();
             for (byte b : hashBytes) 
             {
@@ -134,22 +130,19 @@ public class CardPayment {
     	{
     	    boolean isValidCardNumber = false;
 
-    	    // Prompt user for credit card number
     	    while (!isValidCardNumber) 
     	    {
     	        customerCardNumber = JOptionPane.showInputDialog(null, 
     	            "Please provide your credit card number:");
 
-    	        if (customerCardNumber == null) // Handle cancel action in the input dialog
+    	        if (customerCardNumber == null)
     	        {
     	            cancelPayment();
-    	            return false; // Exit if the user cancels the input
+    	            return false; 
     	        }
-
-    	        // Validate the card number
     	        if (isCardNumberValid(customerCardNumber)) 
     	        {
-    	            isValidCardNumber = true; // Valid card number, exit loop
+    	            isValidCardNumber = true;
     	        } 
     	        else 
     	        {

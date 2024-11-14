@@ -102,3 +102,12 @@ ex20241114040,toy,Teddy Bear,20.0,2,12.0,BrandG,3+,Fabric,,,,,Jane Doe
 ex20241114041,stationery,Eraser,0.5,22,0.2,BrandF,,Rubber,,,,,Jane Doe
 ex20241114042,stationery,Index Cards,4.5,22,2.5,BrandU,,Paper,,,,,Jane Doe
 ex20241114043,stationery,Ruler,1.5,12,0.5,BrandJ,,Plastic,,,,,Jane Doe
+im20241114026,book,Effective Java,45.0,10,35.0,,,,"Joshua Bloch",978-0134686097,2018,Addison-Wesley,Quan ly ne
+im20241114026,book,Efective Java,45.0,10,30.0,,,,"Joshua Bloch",978-0134686097,2018,Addison-Wesley,Quan ly ne
+ex20241114047,toy,Dinosaur Figurine,18.0,2,15.0,BrandK,6+,Plastic,,,,,Jane Doe
+ex20241114047,toy,Wooden Train Set,40.0,2,30.0,BrandAB,3+,Wood,,,,,Jane Doe
+im20241114027,book,qq,12.0,12,11.0,,,,qưqe,12312312312,1312,qwwww,Jane Doe
+ex20241114048,book,You Don't Know JS,35.0,2,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Quan ly ne
+ex20241114048,toy,Stuffed Animal,25.0,2,15.0,BrandT,3+,Fabric,,,,,Quan ly ne
+ex20241114049,toy,Play-Doh Set,20.0,1,12.0,Hasbro,3+,Plastic,,,,,Jane Doe
+ex20241114050,toy,Building Blocks,22.0,1,15.0,BrandN,4+,Wood,,,,,Quan ly ne
