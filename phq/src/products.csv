@@ -1,9 +1,9 @@
 ID,Type,Name,Price,Quantity,InputPrice,Brand,SuitAge,Material,Author,ISBN,PublicationYear,Publisher
-1,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media
-2,toy,Lego Set,59.99,10,40.0,LEGO,5+,Plastic,,,,
-3,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,
-4,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,
-5,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley
+1,book,effective java,35.0,90,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media
+2,toy,Lego Set,59.99,80,40.0,LEGO,5+,Plastic,,,,
+3,stationery,Notebook,3.5,320,2.0,BrandA,,Paper,,,,
+4,toy,Action Figure,15.0,88,10.0,BrandB,6+,Plastic,,,,
+5,book,Java Concurrency in Practice,35.0,117,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley
 6,stationery,Pencil,0.99,98,0.5,BrandC,,Wood,,,,
 7,book,Clean Code,40.0,8,28.0,,,,"Robert C. Martin",978-0136083238,2009,Prentice Hall
 8,toy,Barbie Doll,25.0,12,15.0,Mattel,3+,Plastic,,,,
@@ -13,8 +13,8 @@ ID,Type,Name,Price,Quantity,InputPrice,Brand,SuitAge,Material,Author,ISBN,Public
 12,stationery,Eraser,0.5,78,0.2,BrandF,,Rubber,,,,
 13,toy,Teddy Bear,20.0,13,12.0,BrandG,3+,Fabric,,,,
 14,book,Design Patterns,55.0,2,42.0,,,,"Erich Gamma",978-0201633610,1994,Addison-Wesley
-15,stationery,Highlighter,2.5,88,1.0,BrandH,,Plastic,,,,
-16,book,Refactoring,38.0,7,30.0,,,,"Martin Fowler",978-0134757599,2018,Addison-Wesley
+15,stationery,Highlighter,2.5,86,1.0,BrandH,,Plastic,,,,
+16,book,Refactoring,38.0,5,30.0,,,,"Martin Fowler",978-0134757599,2018,Addison-Wesley
 17,toy,Hot Wheels Car,12.0,40,8.0,Mattel,4+,Metal,,,,
 18,stationery,Sketchbook,10.0,25,6.0,BrandI,,Paper,,,,
 19,book,Designing Data-Intensive Applications,60.0,5,50.0,,,,"Martin Kleppmann",978-1491903060,2017,O'Reilly Media
@@ -40,11 +40,13 @@ ID,Type,Name,Price,Quantity,InputPrice,Brand,SuitAge,Material,Author,ISBN,Public
 40,book,Learn JavaScript,45.0,7,35.0,,,,"John Doe",978-0134677442,2019,Addison-Wesley
 41,toy,Play Kitchen Set,70.0,8,55.0,BrandV,3+,Plastic,,,,
 42,stationery,Art Supplies Set,25.0,15,18.0,BrandW,,Plastic,,,,
-43,book,Java: The Complete Reference,60.0,5,50.0,,,,"Herbert Schildt",978-0134686097,2019,Oracle Press
+43,book,Java: The Complete Reference,60.0,50,50.0,,,,"Herbert Schildt",978-0134686097,2019,Oracle Press
 44,toy,Doll House,80.0,4,70.0,BrandX,5+,Wood,,,,
 45,stationery,File Folders,12.0,50,8.0,BrandY,,Plastic,,,,
-46,book,Head First Java,50.0,6,40.0,,,,"Kathy Sierra",978-0596009205,2005,Addison-Wesley
+46,book,Head First Java,50.0,60,40.0,,,,"Kathy Sierra",978-0596009205,2005,Addison-Wesley
 47,toy,Remote Control Helicopter,90.0,2,80.0,BrandZ,10+,Plastic,,,,
 48,stationery,Whiteboard Markers,10.0,30,6.0,BrandAA,,Plastic,,,,
-49,book,You Don't Know JS,35.0,8,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media
+49,book,You Don't Know JS,35.0,80,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media
 50,toy,Wooden Train Set,40.0,10,30.0,BrandAB,3+,Wood,,,,
+51,book,Effective Java,45.0,90,35.0,,,,"Joshua Bloch",978-0134686097,2018,Addison-Wesley
+52,book,Efective Java,45.0,90,30.0,,,,"Joshua Bloch",978-0134686097,2018,Addison-Wesley

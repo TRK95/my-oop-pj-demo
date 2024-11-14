@@ -116,9 +116,9 @@ public class EmployeeFrame extends JFrame {
         products = employee.getProductsFromFile();
     }
     private void showAddProductOptions() {
-        Object[] options = {"Add by CSV", "Add by Hand"};
+        Object[] options = {"Add by CSV", "Add by hand", "Add by ID"};
         int choice = JOptionPane.showOptionDialog(this,
-                "How would you like to add products?",
+                "How would you like to add products:",
                 "Add Products",
                 JOptionPane.YES_NO_CANCEL_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
@@ -137,6 +137,9 @@ public class EmployeeFrame extends JFrame {
                 break;
             default:
                 break;
+            case 2:
+            	employee.addProductByID();
+            	displayAllProducts();
         }
     }
     protected void back() {
@@ -161,7 +164,7 @@ public class EmployeeFrame extends JFrame {
     }
 
     public void displayAllProducts() {
-        String[] columnNames = { "ID", "Type", "Name", "Price", "Quantity", "Input Price", "Brand", "Suit Age", "Material", "Author", "ISBN", "Publication Year", "Publisher" };
+        String[] columnNames = { "ID", "Type", "Name", "Price", "Quantity", "Input Price ", "Brand", "Suit Age", "Material", "Author", "ISBN", "Publication Year", "Publisher" };
         tableModel = new DefaultTableModel(columnNames, 0);
         productsTable.setModel(tableModel);
 
@@ -203,18 +206,18 @@ public class EmployeeFrame extends JFrame {
         int selectedRow = productsTable.getSelectedRow();
 
         if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Please select a product to remove.");
+            JOptionPane.showMessageDialog(this, "Select 1 product to remove.");
             return;
         }
 
         String id = (String) tableModel.getValueAt(selectedRow, 0);
         String name = (String) tableModel.getValueAt(selectedRow, 2);
 
-        int confirmation = JOptionPane.showConfirmDialog(this, "Are you sure you want to remove " + name + "?", "Confirm Removal", JOptionPane.YES_NO_OPTION);
+        int confirmation = JOptionPane.showConfirmDialog(this, "Are you sure to remove  " + name + "?", "Confirm Removal", JOptionPane.YES_NO_OPTION);
         if (confirmation == JOptionPane.YES_OPTION) {
             employee.removeProduct(id);
             displayAllProducts();
-            JOptionPane.showMessageDialog(this, name + " removed successfully.");
+            JOptionPane.showMessageDialog(this, name + " remove successfully.");
         }
     }
     private void addToCart() {
@@ -231,21 +234,21 @@ public class EmployeeFrame extends JFrame {
             try {
                 quantity = Integer.parseInt(input);
                 if (quantity <= 0) {
-                    JOptionPane.showMessageDialog(this, "Số lượng phải lớn hơn 0.");
+                    JOptionPane.showMessageDialog(this, "Quantity must bigger than 0.");
                     return;
                 }
                 if (quantity > productQuantity) {
                     quantity = productQuantity;
+                    JOptionPane.showMessageDialog(this, "The quantity you entered bigger than available quantity" + "\n" + "Add all available quantity to cart.");
                 }
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Vui lòng nhập 1 số hợp lệ");
+                JOptionPane.showMessageDialog(this, "Invalid input");
                 return;
             }
 
             export.addToCart(productId, quantity, products);
-            System.out.print(quantity);
         } else {
-            JOptionPane.showMessageDialog(this, "Please select a valid product to add to cart.");
+            JOptionPane.showMessageDialog(this, "Select 1 valid product to adđ to cart .");
         }
     }
 

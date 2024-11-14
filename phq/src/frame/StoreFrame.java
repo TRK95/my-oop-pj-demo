@@ -24,7 +24,7 @@ public class StoreFrame extends JFrame {
 	public StoreFrame(Manager manager, ManagerFrame managerFrame) {
 	    this.managerFrame = managerFrame;
 	    this.manager = manager;
-	    setTitle("Store Revenue and Expenses");
+	    setTitle("Revenue and Expense");
 	    setSize(1400, 800);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -32,7 +32,7 @@ public class StoreFrame extends JFrame {
 	        "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"
 	    });
 	    JTextField yearField = new JTextField(4);
-	    JButton filterButton = new JButton("Filter");
+	    JButton filterButton = new JButton("Lọc");
 	    filterButton.addActionListener(e -> {
 	        String selectedMonth = (String) monthComboBox.getSelectedItem();
 	        String selectedYear = yearField.getText();
@@ -81,7 +81,7 @@ public class StoreFrame extends JFrame {
 	    totalBuyLabel = new JLabel("Total Buy: 0.0");
 	    totalSellLabel = new JLabel("Total Sell: 0.0");
 	    totalExpenseLabel = new JLabel("Total Expense: 0.0");
-	    netRevenueLabel = new JLabel("Net Revenue: 0.0");
+	    netRevenueLabel = new JLabel("Revenue: 0.0");
 
 	    Font labelFont = new Font("Arial", Font.BOLD, 16);
 	    totalBuyLabel.setFont(labelFont);
@@ -90,9 +90,9 @@ public class StoreFrame extends JFrame {
 	    netRevenueLabel.setFont(labelFont);
 
 	    JButton backButton = new JButton("Back");
-	    JButton shopHistoryButton = new JButton("Shop history");
-	    JButton logHistoryButton = new JButton("Log history");
-	    JButton payHistoryButton = new JButton("Pay History");
+	    JButton shopHistoryButton = new JButton("Shop History");
+	    JButton logHistoryButton = new JButton("Log History");
+	    JButton payHistoryButton = new JButton("Payment History");
 
 	    backButton.addActionListener(e -> back());    
 	    shopHistoryButton.addActionListener(e -> showShopHistory());
@@ -154,7 +154,7 @@ public class StoreFrame extends JFrame {
     }
 
     private DefaultTableModel createTableModel(Map<String, double[]> data) {
-        String[] columnNames = {"Date", "Total Quantity", "Total Price"};
+        String[] columnNames = {"Date", "Total Amount", "Total Price"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
         for (Map.Entry<String, double[]> entry : data.entrySet()) {
@@ -197,15 +197,15 @@ public class StoreFrame extends JFrame {
         double netRevenue = totalSell - totalBuy - totalExpenses;
         totalBuyLabel.setText(String.format("Total Buy: %.2f", totalBuy));
         totalSellLabel.setText(String.format("Total Sell: %.2f", totalSell));
-        totalExpenseLabel.setText(String.format("Total Expenses: %.2f", totalExpenses));
-        netRevenueLabel.setText(String.format("Net Revenue: %.2f", netRevenue));
+        totalExpenseLabel.setText(String.format("Total Expense: %.2f", totalExpenses));
+        netRevenueLabel.setText(String.format("Revenue: %.2f", netRevenue));
     }
     private void back() {
         this.setVisible(false);
         managerFrame.setVisible(true);
     }
     private void showShopHistory() {
-        String[] columns = {"ID", "Name", "Price", "Quantity", "InputPrice", "Employee"};
+        String[] columns = {"ID", "Name", "Price", "Quantity" ,"Input Price", "Employee"};
         List<Object[]> data = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(Main.ordersFilePath))) {
@@ -264,7 +264,7 @@ public class StoreFrame extends JFrame {
         JPanel northPanel = new JPanel(new FlowLayout());
         JComboBox<String> typeComboBox = new JComboBox<>(new String[]{"All", "im", "ex"});
         JComboBox<String> monthComboBox = new JComboBox<>(new String[]{
-            "All", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"
+            "Tất cả", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"
         });
         JTextField yearField = new JTextField(5);
         JComboBox<String> employeeComboBox = new JComboBox<>(employeeNames.toArray(new String[0]));

@@ -23,7 +23,7 @@ public class Employee extends Person {
     public Employee() {}
 
     public Employee(String id, String username, String password, String name, String role, String phone, String idCard) {
-        super(id, username, password, name, role);
+        super(id, username, password, name, role,phone,idCard);
         this.newlyAddedProducts = new ArrayList<>();
     }
 
@@ -35,39 +35,17 @@ public class Employee extends Person {
             StringBuilder addedProductsInfo = new StringBuilder("Added Products:\n");
 
             try (BufferedReader br = new BufferedReader(new FileReader(selectedFile))) {
+
                 String line;
-                br.readLine();
-
                 while ((line = br.readLine()) != null) {
+                    if (line.startsWith("ID")) continue;
                     String[] values = line.split(",");
-                    if (values.length < 13) continue;
-
-                    try {
-                        String id = values[0].trim();
-                        String type = values[1].trim().toLowerCase();
-                        String name = values[2].trim();
-                        double price = Double.parseDouble(values[3].trim());
-                        int quantity = Integer.parseInt(values[4].trim());
-                        double inputPrice = Double.parseDouble(values[5].trim());
-                        String brand = values.length > 6 ? values[6].trim() : "";
-                        String suitAge = values.length > 7 ? values[7].trim() : "";
-                        String material = values.length > 8 ? values[8].trim() : "";
-                        String author = values.length > 9 ? values[9].trim() : "";
-                        String isbn = values.length > 10 ? values[10].trim() : "";
-                        int publicationYear = values.length > 11 ? Integer.parseInt(values[11].trim()) : 0;
-                        String publisher = values.length > 12 ? values[12].trim() : "";
-
-                        Product product = createProduct(id, type, name, price, quantity, inputPrice, brand, suitAge, material, author, isbn, publicationYear, publisher);
-                        if (product != null) {
-                            addProductToList(product);
-                            newlyAddedProducts.add(product);
-                            addedProductsInfo.append(name).append(" - Quantity: ").append(quantity).append(" - Input Price: ").append(inputPrice).append("\n");
-                       }
-                    } catch (NumberFormatException e) {
-                        System.out.println("Error parsing line: " + line + " - " + e.getMessage());
-                    }
+                    Product product = createProductFromData(values);
+                    if (product != null) {
+                        newlyAddedProducts.add(product);
+                        addedProductsInfo.append(product.getName()).append(" - Quantity: ").append(product.getQuantity()).append(" - Input Price: ").append(product.getInputPrice()).append("\n");
                 }
-
+            }
                 JOptionPane.showMessageDialog(employeeframe, addedProductsInfo.toString(), "Products Added Successfully", JOptionPane.INFORMATION_MESSAGE);
                 OrderImport order = new OrderImport(newlyAddedProducts, this);
                 order.getOrderImport();
@@ -75,26 +53,62 @@ public class Employee extends Person {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(employeeframe, "Error reading from file: " + e.getMessage());
             }
-        }        
+         }
+       }     
+    public void addProductByID() {
+        String id = JOptionPane.showInputDialog("Enter ID :");
+        if (id == null || id.isEmpty()) {
+            JOptionPane.showMessageDialog(employeeframe, "ID must not white sapce.");
+            return;
+        }
+        String quantityInput = JOptionPane.showInputDialog("Enter quantity :" );
+        int quantity = 0;
+        try {
+            quantity = Integer.parseInt(quantityInput);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(employeeframe, "Invalid quantity.");
+            return;
+        }
+        boolean productFound = false;
+        
+        for (Product product : getProductsFromFile()) {
+            if (product.getId().equals(id)) {
+            	int temp = product.getQuantity();
+                product.setQuantity(quantity);
+                newlyAddedProducts.add(product);
+                
+                OrderImport order = new OrderImport(newlyAddedProducts, this);
+                order.getOrderImport();
+                productFound = true;
+                product.setQuantity(quantity + temp);
+                break;
+                
+            }
+        }
+        
+        if (!productFound) {
+            JOptionPane.showMessageDialog(employeeframe, "Found no product has ID : " + id);
+        }
     }
+
 
     public void addProductByHand() {
         int id = getNextProductId();
         String[] types = {"Book", "Toy", "Stationery"};
-        String type = (String) JOptionPane.showInputDialog(employeeframe, "Select Product Type:", "Product Selection",
+        String type = (String) JOptionPane.showInputDialog(employeeframe, "Choose production type :", "Production type",
                 JOptionPane.QUESTION_MESSAGE, null, types, types[0]);
         if (type == null) return;
 
-        String name = JOptionPane.showInputDialog("Enter Product Name:", null);
-        if (name == null) return;
+        String name = JOptionPane.showInputDialog("Enter name :", null);
+        if (name == null) return; 
 
-        String priceStr = JOptionPane.showInputDialog("Enter Product Price:", "0.0");
+        String priceStr = JOptionPane.showInputDialog("Enter price :", "0.0");
         if (priceStr == null) return; 
 
-        String quantityStr = JOptionPane.showInputDialog("Enter Quantity:", "0");
+        String quantityStr = JOptionPane.showInputDialog("Enter quantity :", "0");
         if (quantityStr == null) return;
 
-        String inputPriceStr = JOptionPane.showInputDialog("Enter Input Price " , "0.0");
+        String inputPriceStr = JOptionPane.showInputDialog("Enter input price : " , "0.0");
         if (inputPriceStr == null) return;
 
         if (name != null && priceStr != null && quantityStr != null && type != null) {
@@ -106,34 +120,34 @@ public class Employee extends Person {
 
                 switch (type) {
                     case "Book":
-                        String author = JOptionPane.showInputDialog( "Enter Author:", null);
+                        String author = JOptionPane.showInputDialog( "Enter author:", null);
                         if (author == null) return; 
 
-                        String publisher = JOptionPane.showInputDialog( "Enter Publisher:",null);
+                        String publisher = JOptionPane.showInputDialog( "Enter publisher:",null);
                         if (publisher == null) return;
                         String isbn = JOptionPane.showInputDialog( "Enter ISBN:",null);
                         if (isbn == null) return;
 
-                        int publicationYear = Integer.parseInt(JOptionPane.showInputDialog( "Enter Publication Year:",null));
+                        int publicationYear = Integer.parseInt(JOptionPane.showInputDialog( "Enter publication year :",null));
                         product = new Book(String.valueOf(id), name, price, quantity, inputPrice, author, isbn, publicationYear, publisher);
                         break;
                     case "Toy":
-                        String brand = JOptionPane.showInputDialog( "Enter Brand:",null);
+                        String brand = JOptionPane.showInputDialog( "Enter brand:",null);
                         if (brand == null) return; 
 
-                        String material = JOptionPane.showInputDialog( "Enter Material:",null);
+                        String material = JOptionPane.showInputDialog( "Enter material:",null);
                         if (material == null) return;
 
-                        String suitAge = JOptionPane.showInputDialog( "Enter Suitable Age:",0);
+                        String suitAge = JOptionPane.showInputDialog( "Enter suitable Age:",0);
                         if (suitAge == null) return;
 
                         product = new Toy(String.valueOf(id), name, price, quantity, inputPrice, brand, suitAge, material);
                         break;
                     case "Stationery":
-                        String brandSta = JOptionPane.showInputDialog( "Enter Brand:",null);
+                        String brandSta = JOptionPane.showInputDialog( "Enter brand:",null);
                         if (brandSta == null) return;
 
-                        String materialSta = JOptionPane.showInputDialog( "Enter Material:",null);
+                        String materialSta = JOptionPane.showInputDialog( "Enter material:",null);
                         if (materialSta == null) return;
 
                         product = new Stationery(String.valueOf(id), name, price, quantity, inputPrice, brandSta, materialSta);
@@ -143,7 +157,6 @@ public class Employee extends Person {
                         return;
                 }
 
-                addProductToList(product);
                 newlyAddedProducts.add(product);
                 JOptionPane.showMessageDialog(employeeframe, "Product added successfully.");
                 OrderImport order = new OrderImport(newlyAddedProducts, this);
@@ -214,21 +227,6 @@ public class Employee extends Person {
             return value.isEmpty() ? defaultValue : Integer.parseInt(value);
         } catch (NumberFormatException e) {
             return defaultValue;
-        }
-    }
-
-    private Product createProduct(String id, String type, String name, double price, int quantity, double inputPrice, 
-                                   String brand, String suitAge, String material, String author, 
-                                   String isbn, int publicationYear, String publisher) {
-        switch (type.toLowerCase()) {
-            case "book":
-                return new Book(id, name, price, quantity, inputPrice, author, isbn, publicationYear, publisher);
-            case "stationery":
-                return new Stationery(id, name, price, quantity, inputPrice, brand, material);
-            case "toy":
-                return new Toy(id, name, price, quantity, inputPrice, brand, suitAge, material);
-            default:
-                return null;
         }
     }
 
@@ -362,8 +360,16 @@ public class Employee extends Person {
         }
     }
     public boolean productMatchesQuery(Product product, String query) {
+        query = query.toLowerCase();
+        
+        if ((query.equals("book") && product instanceof Book) ||
+            (query.equals("toy") && product instanceof Toy) ||
+            (query.equals("stationery") && product instanceof Stationery)) {
+            return true;
+        }
+
         if (product.getId().toLowerCase().contains(query) || 
-            product.getName().toLowerCase().contains(query) || 
+            product.getName().toLowerCase().contains(query) ||
             String.valueOf(product.getPrice()).contains(query) ||
             String.valueOf(product.getQuantity()).contains(query) || 
             String.valueOf(product.getInputPrice()).contains(query)) {
@@ -386,7 +392,9 @@ public class Employee extends Person {
             return stationery.getBrand().toLowerCase().contains(query) || 
                    stationery.getMaterial().toLowerCase().contains(query);
         }
+
         return false;
     }
+
 
 }

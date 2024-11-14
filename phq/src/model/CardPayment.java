@@ -34,7 +34,7 @@ public class CardPayment {
         	String extendedData[] = Arrays.copyOf(data, data.length + 1);
         	extendedData[extendedData.length - 1] = paymentHashValue; 
 
-        	String message = "Your payment of $" + amount + " is completed.\n" 
+        	String message = "Payment with ID $" + amount + " is completed.\n" 
         	               + "referenceID : " + paymentHashValue;
         	JOptionPane.showMessageDialog(null, message, 
         					"Payment Completed", JOptionPane.INFORMATION_MESSAGE);

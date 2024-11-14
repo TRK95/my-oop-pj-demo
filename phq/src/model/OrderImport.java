@@ -43,21 +43,30 @@ public class OrderImport extends Order{
             getBill();
 
         }
+        productsList.clear();
     }
     
     @Override
     public void getBill() {
         System.out.println("Order Import List Here!!!");
 
-        String format =  "| %-10s | %-30s | %-10d | %-10.2f |%n";
+        String format = "| %-10s | %-30s | %-10d | %-10.2f |%n";
+        String formatTotalPrice = "| %-56s | %-10.2f |%n";
         System.out.format("+------------+--------------------------------+------------+------------+%n");
         System.out.format("| ID         | Name                           | Quantity   | Price      |%n");
         System.out.format("+------------+--------------------------------+------------+------------+%n");
 
-        for (int i = 0; i < this.productsList.size(); i++) {
-            Product temp = this.productsList.get(i);
-            System.out.format(format, temp.getId(), temp.getName(), temp.getQuantity(), temp.getInputPrice() * temp.getQuantity());
+        double total = 0;
+
+        for (Product product : productsList) {
+            double productTotal = product.getQuantity() * product.getInputPrice();
+            total += productTotal;
+            System.out.format(format, product.getId(), product.getName(), product.getQuantity(), productTotal);
         }
+
+        System.out.format("+------------+--------------------------------+------------+------------+%n");
+        System.out.format(formatTotalPrice, "Total price:", total);
         System.out.format("+------------+--------------------------------+------------+------------+%n");
     }
+
 }

@@ -16,7 +16,7 @@ public class EmpmanaFrame extends JFrame {
 
     public EmpmanaFrame(ManagerFrame managerFrame) {
     	this.managerFrame =  managerFrame;
-        setTitle("User Management");
+        setTitle("Quản lý nhân viên.");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
@@ -29,15 +29,15 @@ public class EmpmanaFrame extends JFrame {
         JPanel actionPanel = new JPanel();
         add(actionPanel, BorderLayout.SOUTH);
 
-        addButton = new JButton("Add User");
+        addButton = new JButton("Add user");
         actionPanel.add(addButton);
         addButton.addActionListener(e -> addUser());
 
-        editButton = new JButton("Edit User");
+        editButton = new JButton("Edit user");
         actionPanel.add(editButton);
         editButton.addActionListener(e -> editUser());
 
-        removeButton = new JButton("Remove User");
+        removeButton = new JButton("Remove user");
         actionPanel.add(removeButton);
         removeButton.addActionListener(e -> removeUser());
 
@@ -51,6 +51,7 @@ public class EmpmanaFrame extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
     }
+
     private void loadUsersFromFile(String users) {
         try (BufferedReader br = new BufferedReader(new FileReader(users))) {
             String line;
@@ -59,59 +60,122 @@ public class EmpmanaFrame extends JFrame {
             
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
-                if (data.length >= 7) {
-                    String[] row = new String[8];
-                    row[0] = data[0];
-                    row[1] = data[1];
-                    row[2] = data[2];
-                    row[3] = data[3];
-                    row[4] = data[4];
-                    row[5] = data[5];
-                    row[6] = data[6];
+                
+                if (data.length == 7) {
+                    String[] row = new String[7];
+                    for (int i = 0; i < 7; i++) {
+                        row[i] = data[i].trim();
+                    }
                     tableModel.addRow(row);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error loading data from file.");
+            JOptionPane.showMessageDialog(this, "Error loading data from file: " + e.getMessage());
         }
     }
+    public String generateNewUserID() {
+        int maxID = 0;
 
+        for (int i = 0; i < tableModel.getRowCount(); i++) {
+            try {
+                String id = (String) tableModel.getValueAt(i, 0);
+                int userID = Integer.parseInt(id);
+                if (userID > maxID) {
+                    maxID = userID;
+                }
+            } catch (NumberFormatException e) {
+            }
+        }
+        String newID = String.valueOf(maxID + 1);
+        return newID;
+    }
     private void addUser() {
-        String id = JOptionPane.showInputDialog(this, "Enter ID:");
-        String username = JOptionPane.showInputDialog(this, "Enter Username:");
+        String id = generateNewUserID();
+        
+        String username = JOptionPane.showInputDialog(this, "Enter username :");
+        if (username == null) return;
 
-        if (isIdOrUsernameExist(id, username)) {
-            JOptionPane.showMessageDialog(this, "ID or Username already exists. Please enter a unique ID and Username.");
+        if (isUsernameExist( username)) {
+            JOptionPane.showMessageDialog(this, "Username existed. Retry.");
+            return;
+        }
+        JPasswordField passwordField = new JPasswordField();
+        JPasswordField confirmPasswordField = new JPasswordField();
+
+        JPanel passwordPanel = new JPanel();
+        passwordPanel.setLayout(new BoxLayout(passwordPanel, BoxLayout.Y_AXIS));
+        passwordPanel.add(new JLabel("Password:"));
+        passwordPanel.add(passwordField);
+        passwordPanel.add(new JLabel("Confirm password:"));
+        passwordPanel.add(confirmPasswordField);
+
+        int option = JOptionPane.showConfirmDialog(this, passwordPanel, "Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        if (option == JOptionPane.CANCEL_OPTION) return; 
+
+        // Validate passwords
+        String password = new String(passwordField.getPassword());
+        String confirmPassword = new String(confirmPasswordField.getPassword());
+
+        if (!password.equals(confirmPassword)) {
+            JOptionPane.showMessageDialog(this, "Different password." +"\n" + "Retry.");
             return;
         }
 
-        String password = JOptionPane.showInputDialog(this, "Enter Password:");
-        String name = JOptionPane.showInputDialog(this, "Enter Name:");
+        String name = JOptionPane.showInputDialog(this, "Enter name:");
+        if (name == null) return;
 
         String[] roles = {"Employee", "Manager"};
-        String role = (String) JOptionPane.showInputDialog(this, "Select Role:", "Role",
+        String role = (String) JOptionPane.showInputDialog(this, "Select Role :", "Role",
                 JOptionPane.QUESTION_MESSAGE, null, roles, roles[0]);
+        if (role == null) return;
 
-        String phone = JOptionPane.showInputDialog(this, "Enter Phone:");
-        String idCard = JOptionPane.showInputDialog(this, "Enter ID Card:");
+        String phone = getValidPhoneNumber();
+        if (phone == null) return;
+
+        String idCard = getValidIdCard();
+        if (idCard == null) return;
 
         tableModel.addRow(new String[]{id, username, password, name, role, phone, idCard});
         saveUsersToFile();
     }
 
-    private boolean isIdOrUsernameExist(String id, String username) {
+    private String getValidPhoneNumber() {
+        String phone;
+        while (true) {
+            phone = JOptionPane.showInputDialog(this, "Enter phone number(10 or 11 digits and starts with 0):");
+            if (phone != null && phone.matches("^0\\d{9,10}$")) {
+                break;
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid phone number.");
+            }
+        }
+        return phone;
+    }
+
+    private String getValidIdCard() {
+        String idCard;
+        while (true) {
+            idCard = JOptionPane.showInputDialog(this, "Enter idCard(12 digits):");
+            if (idCard != null && idCard.matches("^\\d{12}$")) {
+                break;
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid idCard.");
+            }
+        }
+        return idCard;
+    }
+
+
+    private boolean isUsernameExist( String username) {
         for (int i = 0; i < tableModel.getRowCount(); i++) {
-            String existingId = (String) tableModel.getValueAt(i, 0);
             String existingUsername = (String) tableModel.getValueAt(i, 1);
-            if (existingId.equals(id) || existingUsername.equals(username)) {
+            if ( existingUsername.equals(username)) {
                 return true;
             }
         }
         return false;
     }
-
-
     private void editUser() {
         int selectedRow = employeeTable.getSelectedRow();
         if (selectedRow != -1) {
@@ -123,13 +187,44 @@ public class EmpmanaFrame extends JFrame {
             String phone = (String) tableModel.getValueAt(selectedRow, 5);
             String idCard = (String) tableModel.getValueAt(selectedRow, 6);
 
-            username = JOptionPane.showInputDialog(this, "Enter Username:", username);
-            password = JOptionPane.showInputDialog(this, "Enter Password:", password);
+            username = JOptionPane.showInputDialog(this, "Enter username:", username);
+            if (username == null) return;
+
+            JPasswordField passwordField = new JPasswordField();
+            JPasswordField confirmPasswordField = new JPasswordField();
+
+            // Show input dialog for password and confirmation
+            JPanel passwordPanel = new JPanel();
+            passwordPanel.setLayout(new BoxLayout(passwordPanel, BoxLayout.Y_AXIS));
+            passwordPanel.add(new JLabel("Enter Password:"));
+            passwordPanel.add(passwordField);
+            passwordPanel.add(new JLabel("Confirm Password:"));
+            passwordPanel.add(confirmPasswordField);
+
+            int option = JOptionPane.showConfirmDialog(this, passwordPanel, "Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+            if (option == JOptionPane.CANCEL_OPTION) return;  // Cancel pressed
+
+            // Validate passwords
+            password = new String(passwordField.getPassword());
+            String confirmPassword = new String(confirmPasswordField.getPassword());
+
+            if (!password.equals(confirmPassword)) {
+                JOptionPane.showMessageDialog(this, "Passwords do not match. Please try again.");
+                return;
+            }
+
             name = JOptionPane.showInputDialog(this, "Enter Name:", name);
+            if (name == null) return;
+
             String role = (String) JOptionPane.showInputDialog(this, "Select Role:", "Role",
                     JOptionPane.QUESTION_MESSAGE, null, roles, roles[0]);
-            phone = JOptionPane.showInputDialog(this, "Enter Phone:", phone);
-            idCard = JOptionPane.showInputDialog(this, "Enter ID Card:", idCard);
+            if (role == null) return;
+
+            phone = getValidPhoneNumber();
+            if (phone == null) return;
+
+            idCard = getValidIdCard();
+            if (idCard == null) return;
 
             tableModel.setValueAt(id, selectedRow, 0);
             tableModel.setValueAt(username, selectedRow, 1);

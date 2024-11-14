@@ -8,9 +8,10 @@ public class Person {
     private String name;
     private String role;
 
+
     public Person(){}
 
-    public Person(String id, String username, String password, String name, String role) {
+    public Person(String id, String username, String password, String name, String role, String phone, String idCard) {
         this.id = id;
         this.username = username; 
         this.password = password;
