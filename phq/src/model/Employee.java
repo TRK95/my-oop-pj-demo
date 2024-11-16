@@ -82,7 +82,6 @@ public class Employee extends Person {
                 productFound = true;
                 product.setQuantity(quantity + temp);
                 break;
-                
             }
         }
         
@@ -230,7 +229,7 @@ public class Employee extends Person {
         }
     }
 
-    private void addProductToList(Product product ) {
+    void addProductToList(Product product ) {
         List<Product> products = getProductsFromFile();
         boolean productExists = false;
 

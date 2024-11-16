@@ -37,6 +37,9 @@ public class OrderImport extends Order{
 
         Payment paymentMethod = new Payment(price, "import", activEmployee.getName());
         if (!paymentMethod.processPayment()) {
+        	for (Product product : productsList) {
+        		activEmployee.addProductToList(product);
+        	}
             setID(paymentMethod.getID());
             setPrice(price);
             super.saveToCSV(ID, productsList, activEmployee.getName());

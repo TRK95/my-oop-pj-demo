@@ -214,3 +214,22 @@ im20241115046,book,Designing Data-Intensive Applications,60.0,10,50.0,,,,"Martin
 im20241115048,book,The Clean Coder,45.0,1,35.0,,,,"Robert C. Martin",978-0136083238,2010,Prentice Hall,Quan ly ne
 ex20241115051,book,Refactoring,38.0,2,30.0,,,,"Martin Fowler",978-0134757599,2018,Addison-Wesley,Jane Doe
 ex20241115052,stationery,Highlighter,2.5,2,1.0,BrandH,,Plastic,,,,,Jane Doe
+im20241116049,stationery,Sketchbook,10.0,15,6.0,BrandI,,Paper,,,,,Jane Doe
+im20241116050,book,The Pragmatic Programmer,50.0,4,38.0,,,,"Andrew Hunt",978-0135957059,2019,Addison-Wesley,Jane Doe
+im20241116051,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Quan ly ne
+im20241116051,toy,Lego Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Quan ly ne
+im20241116051,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Quan ly ne
+im20241116051,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Quan ly ne
+im20241116051,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Quan ly ne
+im20241116052,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Quan ly ne
+im20241116052,toy,Lego Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Quan ly ne
+im20241116052,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Quan ly ne
+im20241116052,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Quan ly ne
+im20241116052,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Quan ly ne
+im20241116053,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Jane Doe
+im20241116053,toy,Lego Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241116053,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Jane Doe
+im20241116053,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Jane Doe
+im20241116053,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241116054,book,qq,123.0,12,120.0,,,,qqq,123123123,1233,qqqq,Jane Doe
+im20241116055,toy,Action Figure,15.0,1,10.0,BrandB,6+,Plastic,,,,,Jane Doe

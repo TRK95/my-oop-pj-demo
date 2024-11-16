@@ -1,9 +1,9 @@
 ID,Type,Name,Price,Quantity,InputPrice,Brand,SuitAge,Material,Author,ISBN,PublicationYear,Publisher
-1,book,effective java,35.0,90,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media
-2,toy,Lego Set,59.99,80,40.0,LEGO,5+,Plastic,,,,
-3,stationery,Notebook,3.5,320,2.0,BrandA,,Paper,,,,
-4,toy,Action Figure,15.0,88,10.0,BrandB,6+,Plastic,,,,
-5,book,Java Concurrency in Practice,35.0,117,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley
+1,book,effective java,35.0,100,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media
+2,toy,Lego Set,59.99,90,40.0,LEGO,5+,Plastic,,,,
+3,stationery,Notebook,3.5,360,2.0,BrandA,,Paper,,,,
+4,toy,Action Figure,15.0,100,10.0,BrandB,6+,Plastic,,,,
+5,book,Java Concurrency in Practice,35.0,130,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley
 6,stationery,Pencil,0.99,98,0.5,BrandC,,Wood,,,,
 7,book,Clean Code,40.0,8,28.0,,,,"Robert C. Martin",978-0136083238,2009,Prentice Hall
 8,toy,Barbie Doll,25.0,12,15.0,Mattel,3+,Plastic,,,,
@@ -48,5 +48,3 @@ ID,Type,Name,Price,Quantity,InputPrice,Brand,SuitAge,Material,Author,ISBN,Public
 48,stationery,Whiteboard Markers,10.0,30,6.0,BrandAA,,Plastic,,,,
 49,book,You Don't Know JS,35.0,80,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media
 50,toy,Wooden Train Set,40.0,10,30.0,BrandAB,3+,Wood,,,,
-51,book,Effective Java,45.0,90,35.0,,,,"Joshua Bloch",978-0134686097,2018,Addison-Wesley
-52,book,Efective Java,45.0,90,30.0,,,,"Joshua Bloch",978-0134686097,2018,Addison-Wesley

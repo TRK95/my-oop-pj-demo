@@ -29,12 +29,6 @@ public class LoginFrame extends JFrame {
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-
-        URL url = getClass().getClassLoader().getResource("icon.png");
-        if (url != null) {
-            Image icon = Toolkit.getDefaultToolkit().getImage(url);
-            setIconImage(icon);
-        }
         
         JLabel userIdLabel = new JLabel("User ID:");
         userIdField = new JTextField(15);
@@ -83,8 +77,7 @@ public class LoginFrame extends JFrame {
             while ((line = reader.readLine()) != null) {
                 String[] record = line.split(",");
                 if (record.length < 7) {
-                    continue;
-                }
+                    continue;             }
 
                 String csvId = record[0].trim();
                 String csvUsername = record[1].trim();
