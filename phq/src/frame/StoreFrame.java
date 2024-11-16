@@ -154,10 +154,12 @@ public class StoreFrame extends JFrame {
     }
 
     private DefaultTableModel createTableModel(Map<String, double[]> data) {
+                Map<String, double[]> sortedData = new TreeMap<>(data);
+
         String[] columnNames = {"Date", "Total Amount", "Total Price"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
-        for (Map.Entry<String, double[]> entry : data.entrySet()) {
+        for (Map.Entry<String, double[]> entry : sortedData.entrySet()) {
             String date = entry.getKey();
             double[] totals = entry.getValue();
             model.addRow(new Object[]{date, (int) totals[0], totals[1]});
@@ -165,6 +167,7 @@ public class StoreFrame extends JFrame {
 
         return model;
     }
+
 
     private DefaultTableModel createExpenseTableModel(Map<String, Double> expenseDetails) {
         String[] columnNames = {"Description", "Amount"};
