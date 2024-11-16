@@ -16,7 +16,7 @@ public class EmpmanaFrame extends JFrame {
 
     public EmpmanaFrame(ManagerFrame managerFrame) {
     	this.managerFrame =  managerFrame;
-        setTitle("Quản lý nhân viên.");
+        setTitle("Employee Manage.");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
@@ -144,7 +144,8 @@ public class EmpmanaFrame extends JFrame {
         String phone;
         while (true) {
             phone = JOptionPane.showInputDialog(this, "Enter phone number(10 or 11 digits and starts with 0):");
-            if (phone != null && phone.matches("^0\\d{9,10}$")) {
+            if (phone == null) return null;
+            else if ( phone.matches("^0\\d{9,10}$")) {
                 break;
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid phone number.");
@@ -157,7 +158,8 @@ public class EmpmanaFrame extends JFrame {
         String idCard;
         while (true) {
             idCard = JOptionPane.showInputDialog(this, "Enter idCard(12 digits):");
-            if (idCard != null && idCard.matches("^\\d{12}$")) {
+            if (idCard == null) return null;
+            else if ( idCard.matches("^\\d{12}$")) {
                 break;
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid idCard.");
@@ -193,7 +195,6 @@ public class EmpmanaFrame extends JFrame {
             JPasswordField passwordField = new JPasswordField();
             JPasswordField confirmPasswordField = new JPasswordField();
 
-            // Show input dialog for password and confirmation
             JPanel passwordPanel = new JPanel();
             passwordPanel.setLayout(new BoxLayout(passwordPanel, BoxLayout.Y_AXIS));
             passwordPanel.add(new JLabel("Enter Password:"));
@@ -204,7 +205,6 @@ public class EmpmanaFrame extends JFrame {
             int option = JOptionPane.showConfirmDialog(this, passwordPanel, "Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
             if (option == JOptionPane.CANCEL_OPTION) return;  // Cancel pressed
 
-            // Validate passwords
             password = new String(passwordField.getPassword());
             String confirmPassword = new String(confirmPasswordField.getPassword());
 
