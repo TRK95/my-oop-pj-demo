@@ -28,14 +28,15 @@ public class StoreFrame extends JFrame {
 	    setSize(1400, 800);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-	    JComboBox<String> monthComboBox = new JComboBox<>(new String[] {
+	    JComboBox<String> monthComboBox = new JComboBox<>(new String[] {"All",
 	        "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"
 	    });
 	    JTextField yearField = new JTextField(4);
-	    JButton filterButton = new JButton("Lọc");
+	    JButton filterButton = new JButton("Filter");
 	    filterButton.addActionListener(e -> {
 	        String selectedMonth = (String) monthComboBox.getSelectedItem();
 	        String selectedYear = yearField.getText();
+	        selectedYear = (selectedYear == null || selectedYear.trim().isEmpty()) ? "0000" : selectedYear;
 	        filterData(selectedYear + selectedMonth);
 	    });
 
@@ -48,17 +49,23 @@ public class StoreFrame extends JFrame {
 
 	    JPanel tablePanel = new JPanel();
 	    tablePanel.setLayout(new GridLayout(1, 3));
-
+	    Font textFont = new Font("Arial", Font.BOLD, 14);
 	    JPanel importPanel = new JPanel(new BorderLayout());
-	    importPanel.add(new JLabel("Import Table", SwingConstants.CENTER), BorderLayout.NORTH);
+	    JLabel imlabel = new JLabel("Import Table", SwingConstants.CENTER);
+	    imlabel.setFont(textFont);
+	    importPanel.add(imlabel, BorderLayout.NORTH);
 	    importPanel.add(new JScrollPane(importTable), BorderLayout.CENTER);
 
 	    JPanel exportPanel = new JPanel(new BorderLayout());
-	    exportPanel.add(new JLabel("Export Table", SwingConstants.CENTER), BorderLayout.NORTH); 
+	    JLabel exlabel = new JLabel("Export Table", SwingConstants.CENTER);
+	    exlabel.setFont(textFont);
+	    exportPanel.add(exlabel, BorderLayout.NORTH); 
 	    exportPanel.add(new JScrollPane(exportTable), BorderLayout.CENTER);
 
 	    JPanel expensePanel = new JPanel(new BorderLayout());
-	    expensePanel.add(new JLabel("Expense Table", SwingConstants.CENTER), BorderLayout.NORTH);
+	    JLabel expenselabel = new JLabel("Expense Table", SwingConstants.CENTER);
+	    expenselabel.setFont(textFont);
+	    expensePanel.add(expenselabel, BorderLayout.NORTH);
 	    expensePanel.add(new JScrollPane(expenseTable), BorderLayout.CENTER);
 
 	    tablePanel.add(importPanel);
@@ -83,7 +90,7 @@ public class StoreFrame extends JFrame {
 	    totalExpenseLabel = new JLabel("Total Expense: 0.0");
 	    netRevenueLabel = new JLabel("Revenue: 0.0");
 
-	    Font labelFont = new Font("Arial", Font.BOLD, 16);
+	    Font labelFont = new Font("Arial", Font.BOLD, 18);
 	    totalBuyLabel.setFont(labelFont);
 	    totalSellLabel.setFont(labelFont);
 	    totalExpenseLabel.setFont(labelFont);
@@ -267,7 +274,7 @@ public class StoreFrame extends JFrame {
         JPanel northPanel = new JPanel(new FlowLayout());
         JComboBox<String> typeComboBox = new JComboBox<>(new String[]{"All", "im", "ex"});
         JComboBox<String> monthComboBox = new JComboBox<>(new String[]{
-            "Tất cả", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"
+            "All", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"
         });
         JTextField yearField = new JTextField(5);
         JComboBox<String> employeeComboBox = new JComboBox<>(employeeNames.toArray(new String[0]));
@@ -314,8 +321,8 @@ public class StoreFrame extends JFrame {
             boolean matchesType = type.equals("All") || id.startsWith(type);
             boolean matchesMonth = month.equals("All") || id.substring(6, 8).equals(month);
             boolean matchesYear = year.isEmpty() || id.substring(2, 6).equals(year);
-            boolean matchesEmployee = employee.equals("All") || employeeName.equalsIgnoreCase(employee);
-            if (matchesType && matchesMonth && matchesYear && matchesEmployee) {
+	        boolean matchesEmployee = employee.equals("All") || employeeName.equalsIgnoreCase(employee);
+	        if (matchesType && matchesMonth && matchesYear && matchesEmployee) {
                 tableModel.addRow(row);
             }
         }
@@ -349,14 +356,13 @@ public class StoreFrame extends JFrame {
 	    }
 	    List<String> employeeNames = new ArrayList<>();
 	    employeeNames.add("All");
-	    try (BufferedReader empReader = new BufferedReader(new FileReader(Main.userFilePath))) {
+	    try (BufferedReader empReader = new BufferedReader(new FileReader(Main.logFilePath))) {
 	        String empLine;
 	        empReader.readLine();
 	        while ((empLine = empReader.readLine()) != null) {
 	            String[] empValues = empLine.split(",");
-	            if (empValues.length > 3 && empValues[4].equals("Employee")) {
-	                employeeNames.add(empValues[3]);
-	            }
+
+	            employeeNames.add(empValues[0]);
 	        }
 	    } catch (IOException e) {
 	        e.printStackTrace();

@@ -31,20 +31,52 @@ public class Manager extends Employee {
 
                 String id = values[0];
                 String date = id.substring(2, 10); 
-                if (!date.startsWith(datePrefix)) continue; 
-
-                double price = id.startsWith("im") ? Double.parseDouble(values[5]) : Double.parseDouble(values[3]);
-                int quantity = Integer.parseInt(values[4]);
-                if (id.startsWith("im")) {
-                    double[] totals = importSummary.getOrDefault(date, new double[2]);
-                    totals[0] += quantity;
-                    totals[1] += price * quantity;
-                    importSummary.put(date, totals);
-                } else if (id.startsWith("ex")) {
-                    double[] totals = exportSummary.getOrDefault(date, new double[2]);
-                    totals[0] += quantity;
-                    totals[1] += price * quantity;
-                    exportSummary.put(date, totals);
+                if(datePrefix.equals("0000All")) {
+                	double price = id.startsWith("im") ? Double.parseDouble(values[5]) : Double.parseDouble(values[3]);
+                    int quantity = Integer.parseInt(values[4]);
+                    if (id.startsWith("im")) {
+                        double[] totals = importSummary.getOrDefault(date, new double[2]);
+                        totals[0] += quantity;
+                        totals[1] += price * quantity;
+                        importSummary.put(date, totals);
+                    } else if (id.startsWith("ex")) {
+                        double[] totals = exportSummary.getOrDefault(date, new double[2]);
+                        totals[0] += quantity;
+                        totals[1] += price * quantity;
+                        exportSummary.put(date, totals);
+                    }
+                }else if (datePrefix.contains("All")){
+                	if(!date.equals(datePrefix.substring(0,4))) continue;
+                	double price = id.startsWith("im") ? Double.parseDouble(values[5]) : Double.parseDouble(values[3]);
+                    int quantity = Integer.parseInt(values[4]);
+                    if (id.startsWith("im")) {
+                        double[] totals = importSummary.getOrDefault(date, new double[2]);
+                        totals[0] += quantity;
+                        totals[1] += price * quantity;
+                        importSummary.put(date, totals);
+                    } else if (id.startsWith("ex")) {
+                        double[] totals = exportSummary.getOrDefault(date, new double[2]);
+                        totals[0] += quantity;
+                        totals[1] += price * quantity;
+                        exportSummary.put(date, totals);
+                    }
+                }
+                else {
+	                if (!date.startsWith(datePrefix)) continue; 
+	
+	                double price = id.startsWith("im") ? Double.parseDouble(values[5]) : Double.parseDouble(values[3]);
+	                int quantity = Integer.parseInt(values[4]);
+	                if (id.startsWith("im")) {
+	                    double[] totals = importSummary.getOrDefault(date, new double[2]);
+	                    totals[0] += quantity;
+	                    totals[1] += price * quantity;
+	                    importSummary.put(date, totals);
+	                } else if (id.startsWith("ex")) {
+	                    double[] totals = exportSummary.getOrDefault(date, new double[2]);
+	                    totals[0] += quantity;
+	                    totals[1] += price * quantity;
+	                    exportSummary.put(date, totals);
+                }
                 }
             }
         } catch (IOException e) {
@@ -67,6 +99,20 @@ public class Manager extends Employee {
                 if (values.length < 3) continue;
 
                 String date = values[0].substring(0, 6); 
+                if (datePrefix.equals("0000All")) {
+                	String name = values[1]; 
+                    double cost = Double.parseDouble(values[2]); 
+
+                    expenseDetails.put(name, expenseDetails.getOrDefault(name, 0.0) + cost);
+                }
+                else if(datePrefix.contains("All")) {
+                	if(!date.substring(0,4).equals(datePrefix.substring(0,4))) continue;
+                	String name = values[1]; 
+                    double cost = Double.parseDouble(values[2]); 
+
+                    expenseDetails.put(name, expenseDetails.getOrDefault(name, 0.0) + cost);
+                }
+                else {
                 if (!date.equals(datePrefix)) continue; 
 
                 String name = values[1]; 
@@ -74,6 +120,7 @@ public class Manager extends Employee {
 
                 expenseDetails.put(name, expenseDetails.getOrDefault(name, 0.0) + cost);
             }
+           }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -100,13 +147,32 @@ public class Manager extends Employee {
                 String logMonth = logValues[1]; 
                 String logPrefix = logYear + logMonth; 
 
-                if (!logPrefix.equals(selectedDatePrefix)) continue; 
+                if (selectedDatePrefix.equals("0000All")) {
+                	
+	                String name = values[0]; 
+	                double duration = Double.parseDouble(values[3]); 
 
-                String name = values[0]; 
-                double duration = Double.parseDouble(values[3]); 
+	                double salary = duration * 25;
+	                salaries.put(name + "'s salary", salaries.getOrDefault(name + "'s salary", 0.0) + salary);
 
-                double salary = duration * 25;
-                salaries.put(name + "'s salary ", salaries.getOrDefault(name, 0.0) + salary);
+                }else if (selectedDatePrefix.contains("All")) {
+                	if (!logYear.equals(selectedDatePrefix.substring(0,4))) continue;
+                	
+                	String name = values[0]; 
+	                double duration = Double.parseDouble(values[3]); 
+
+	                double salary = duration * 25;
+	                salaries.put(name + "'s salary", salaries.getOrDefault(name + "'s salary", 0.0) + salary);
+                }
+                else {
+                	if (!logPrefix.equals(selectedDatePrefix)) continue; 
+
+	                String name = values[0]; 
+	                double duration = Double.parseDouble(values[3]); 
+	
+	                double salary = duration * 25;
+	                salaries.put(name + "'s salary", salaries.getOrDefault(name + "'s salary", 0.0) + salary);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -114,4 +180,5 @@ public class Manager extends Employee {
 
         return salaries;
     }
+    
 }

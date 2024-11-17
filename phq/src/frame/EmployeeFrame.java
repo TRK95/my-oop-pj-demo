@@ -239,14 +239,14 @@ public class EmployeeFrame extends JFrame {
                 }
                 if (quantity > productQuantity) {
                     quantity = productQuantity;
-                    JOptionPane.showMessageDialog(this, "The quantity you entered bigger than available quantity" + "\n" + "Add all available quantity to cart.");
+                    JOptionPane.showMessageDialog(this, "The quantity you entered bigger than available quantity: "+ productQuantity + "\n" + "Add all available quantity to cart.");
                 }
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Invalid input");
                 return;
             }
 
-            export.addToCart(productId, quantity, products);
+            export.addToCart(productId, quantity,employee.getProductsFromFile());
         } else {
             JOptionPane.showMessageDialog(this, "Select 1 valid product to adđ to cart .");
         }

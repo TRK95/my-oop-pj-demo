@@ -68,7 +68,7 @@ public class OrderExport extends Order{
 	    if (item == null) {
 	        return;
 	    }
-
+	    
 	    boolean productExists = false;
 	    for (Product existingProduct : productsList) {
 	        if (existingProduct.getName().equals(item.getName())) {
@@ -81,6 +81,9 @@ public class OrderExport extends Order{
 	    if (!productExists) {
 	        item.setQuantity(quantity);
 	        productsList.add(item);
+	    }
+	    for(Product a : productsList) {
+	    	System.out.print(a);
 	    }
 	}
 	
@@ -192,7 +195,7 @@ public class OrderExport extends Order{
 	        }
 
 	        System.out.format("+------------+--------------------------------+------------+------------+%n");
-	        System.out.format(formatTotalPrice, "Total price:", total); // Print the accumulated total
+	        System.out.format(formatTotalPrice, "Total price:", total);
 	        System.out.format("+------------+--------------------------------+------------+------------+%n");
 	    }
 	}

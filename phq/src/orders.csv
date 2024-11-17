@@ -1,4 +1,18 @@
 ID,Type,Name,Price,Quantity,InputPrice,Brand,SuitAge,Material,Author,ISBN,PublicationYear,Publisher,Employee,
+im20231218075,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241218075,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241018075,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241018076,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Jane Doe
+im20241018076,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241018076,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Jane Doe
+im20241018076,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Jane Doe
+im20241018076,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241018076,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+ex20241018053,toy,Lgo Set,59.99,2,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+ex20241018054,toy,Lgo Set,59.99,8,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118077,book,quan,12.0,22,11.0,,,,qq,12312312,1112,qq,Jane Doe
+im20241118078,toy,Lgo Set,59.99,22,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+ex20241118055,book,You Don't Know JS,35.0,12,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Jane Doe
 im20241103002,book,Effective Java,45.0,10,35.0,Addison-Wesley,,,"Joshua Bloch",978-0134686097,2018,Addison-Wesley,Quan,
 im20241103001,book,Efective Java,45.0,10,30.0,Addison-Wesley,,,"Joshua Bloch",978-0134686097,2018,Addison-Wesley,Quan,
 ex20241102004,book,Java: The Complete Reference,60.0,5,50.0,,,,"Herbert Schildt",978-0134686097,2019,Oracle Press,Quan,
@@ -233,3 +247,133 @@ im20241116053,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Jane Doe
 im20241116053,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
 im20241116054,book,qq,123.0,12,120.0,,,,qqq,123123123,1233,qqqq,Jane Doe
 im20241116055,toy,Action Figure,15.0,1,10.0,BrandB,6+,Plastic,,,,,Jane Doe
+im20241117056,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Jane Doe
+im20241117056,toy,Lego Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241117056,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Jane Doe
+im20241117056,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Jane Doe
+im20241117056,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241117057,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Jane Doe
+im20241117057,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241117057,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Jane Doe
+im20241117057,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Jane Doe
+im20241117057,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241117057,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241117058,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Jane Doe
+im20241117058,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241117058,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Jane Doe
+im20241117058,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Jane Doe
+im20241117058,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241117058,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241117059,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Jane Doe
+im20241117059,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241117059,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Jane Doe
+im20241117059,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Jane Doe
+im20241117059,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241117059,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241117060,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Jane Doe
+im20241117060,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241117060,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Jane Doe
+im20241117060,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Jane Doe
+im20241117060,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241117060,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241117061,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Mike Smith
+im20241117061,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Mike Smith
+im20241117061,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Mike Smith
+im20241117061,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Mike Smith
+im20241117061,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Mike Smith
+im20241117061,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Mike Smith
+im20241118062,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Jane Doe
+im20241118062,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118062,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Jane Doe
+im20241118062,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Jane Doe
+im20241118062,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241118062,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118063,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Jane Doe
+im20241118063,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118063,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Jane Doe
+im20241118063,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Jane Doe
+im20241118063,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241118063,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118064,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Jane Doe
+im20241118064,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118064,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Jane Doe
+im20241118064,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Jane Doe
+im20241118064,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241118064,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118065,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Jane Doe
+im20241118065,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118065,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Jane Doe
+im20241118065,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Jane Doe
+im20241118065,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241118065,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118066,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Jane Doe
+im20241118066,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118066,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Jane Doe
+im20241118066,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Jane Doe
+im20241118066,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241118066,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118067,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Jane Doe
+im20241118067,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118067,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Jane Doe
+im20241118067,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Jane Doe
+im20241118067,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241118067,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118068,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Jane Doe
+im20241118068,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118068,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Jane Doe
+im20241118068,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Jane Doe
+im20241118068,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241118068,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118069,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Jane Doe
+im20241118069,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118069,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Jane Doe
+im20241118069,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Jane Doe
+im20241118069,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241118069,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118070,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Mike Smith
+im20241118070,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Mike Smith
+im20241118070,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Mike Smith
+im20241118070,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Mike Smith
+im20241118070,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Mike Smith
+im20241118070,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Mike Smith
+im20241118071,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Jane Doe
+im20241118071,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118071,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Jane Doe
+im20241118071,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Jane Doe
+im20241118071,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241118071,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118072,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Mike Smith
+im20241118072,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Mike Smith
+im20241118072,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Mike Smith
+im20241118072,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Mike Smith
+im20241118072,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Mike Smith
+im20241118072,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Mike Smith
+im20241118073,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Jane Doe
+im20241118073,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118073,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Jane Doe
+im20241118073,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Jane Doe
+im20241118073,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241118073,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118074,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Emily Jones
+im20241118074,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Emily Jones
+im20241118074,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Emily Jones
+im20241118074,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Emily Jones
+im20241118074,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Emily Jones
+im20241118074,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Emily Jones
+im20241118075,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Jane Doe
+im20241118075,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118075,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Jane Doe
+im20241118075,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Jane Doe
+im20241118075,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241118075,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118076,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Jane Doe
+im20241118076,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118076,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Jane Doe
+im20241118076,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Jane Doe
+im20241118076,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
+im20241118076,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+ex20241118053,toy,Lgo Set,59.99,2,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+ex20241118054,toy,Lgo Set,59.99,8,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+im20241118077,book,quan,12.0,22,11.0,,,,qq,12312312,1112,qq,Jane Doe
+im20241118078,toy,Lgo Set,59.99,22,40.0,LEGO,5+,Plastic,,,,,Jane Doe
+ex20241118055,book,You Don't Know JS,35.0,12,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Jane Doe

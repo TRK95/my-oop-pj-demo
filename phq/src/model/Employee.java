@@ -255,12 +255,7 @@ public class Employee extends Person {
             for (Product existingProduct : products) {
                 if (existingProduct.getName().equals(soldProduct.getName())) {
                     int newQuantity = existingProduct.getQuantity() - soldProduct.getQuantity();
-                    
-                    if (newQuantity <= 0) {
-                        products.remove(existingProduct);
-                    } else {
                         existingProduct.setQuantity(newQuantity);
-                    }
                     break;
                 }
             }
@@ -339,13 +334,13 @@ public class Employee extends Person {
         return maxId + 1;
     }
 
-    public void removeProduct(String productIdOrName) {
+    public void removeProduct(String productId) {
         List<Product> products = getProductsFromFile();
         boolean productFound = false;
 
         for (int i = 0; i < products.size(); i++) {
             Product product = products.get(i);
-            if (product.getId().equals(productIdOrName) || product.getName().equalsIgnoreCase(productIdOrName)) {
+            if (product.getId().equals(productId)) {
                 products.remove(i);
                 productFound = true;
                 break;
