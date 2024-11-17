@@ -20,7 +20,6 @@ public class Employee extends Person {
 
     private EmployeeFrame employeeframe;
     private List<Product> newlyAddedProducts;
-    public Employee() {}
 
     public Employee(String id, String username, String password, String name, String role, String phone, String idCard) {
         super(id, username, password, name, role,phone,idCard);

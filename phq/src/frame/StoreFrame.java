@@ -27,6 +27,50 @@ public class StoreFrame extends JFrame {
 	    setTitle("Revenue and Expense");
 	    setSize(1400, 800);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    
+        List<String> employeeNames = new ArrayList<>();
+        employeeNames.add("All");
+        Set<String> employeeNameSet = new HashSet<>();
+        try (BufferedReader empReader = new BufferedReader(new FileReader(Main.userFilePath))) {
+            String empLine;
+            empReader.readLine(); 
+            while ((empLine = empReader.readLine()) != null) {
+                String[] empValues = empLine.split(",");
+                if (empValues.length > 3 && empValues[4].equals("Employee")) {
+                    employeeNameSet.add(empValues[3]);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedReader logReader = new BufferedReader(new FileReader(Main.logFilePath))) {
+            String logLine;
+            logReader.readLine();
+            while ((logLine = logReader.readLine()) != null) {
+                String[] logValues = logLine.split(",");
+                if (logValues.length > 0) {
+                    employeeNameSet.add(logValues[0]);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedReader odReader = new BufferedReader(new FileReader(Main.ordersFilePath))) {
+            String odLine;
+            odReader.readLine();
+            while ((odLine = odReader.readLine()) != null) {
+                String[] odValues = odLine.split(",");
+                if (odValues.length > 13) {
+                    employeeNameSet.add(odValues[13]);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        employeeNames.addAll(employeeNameSet);
 
 	    JComboBox<String> monthComboBox = new JComboBox<>(new String[] {"All",
 	        "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"
@@ -102,9 +146,9 @@ public class StoreFrame extends JFrame {
 	    JButton payHistoryButton = new JButton("Payment History");
 
 	    backButton.addActionListener(e -> back());    
-	    shopHistoryButton.addActionListener(e -> showShopHistory());
-	    logHistoryButton.addActionListener(e -> showLogHistory());     
-	    payHistoryButton.addActionListener(e -> showPayHistory());
+	    shopHistoryButton.addActionListener(e -> showShopHistory(employeeNames));
+	    logHistoryButton.addActionListener(e -> showLogHistory(employeeNames));     
+	    payHistoryButton.addActionListener(e -> showPayHistory(employeeNames));
 
 	    summaryPanel.add(totalBuyLabel);
 	    summaryPanel.add(totalSellLabel);
@@ -214,7 +258,7 @@ public class StoreFrame extends JFrame {
         this.setVisible(false);
         managerFrame.setVisible(true);
     }
-    private void showShopHistory() {
+    private void showShopHistory(List<String> employeeNames) {
         String[] columns = {"ID", "Name", "Price", "Quantity" ,"Input Price", "Employee"};
         List<Object[]> data = new ArrayList<>();
 
@@ -241,22 +285,6 @@ public class StoreFrame extends JFrame {
 
 
                 data.add(new Object[]{id, name, price, quantity, inputPrice, employee});
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        List<String> employeeNames = new ArrayList<>();
-        employeeNames.add("All");
-        try (BufferedReader empReader = new BufferedReader(new FileReader(Main.userFilePath))) {
-            String empLine;
-            empReader.readLine(); 
-            while ((empLine = empReader.readLine()) != null) {
-                String[] empValues = empLine.split(",");
-                if (empValues.length > 3 && empValues[4].equals("Employee")) {
-                    employeeNames.add(empValues[3]);
-                }
-
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -327,7 +355,7 @@ public class StoreFrame extends JFrame {
             }
         }
     }
-	private void showLogHistory() {
+	private void showLogHistory(List<String> employeeNames) {
 	    String[] columns = {"Name", "Login Time", "Logout Time", "Duration"};
 	    List<Object[]> data = new ArrayList<>();
 
@@ -350,19 +378,6 @@ public class StoreFrame extends JFrame {
 	            int duration = values[3].isEmpty() ? 0 : Integer.parseInt(values[3]);
 
 	            data.add(new Object[]{name, loginTime, logoutTime, duration});
-	        }
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
-	    List<String> employeeNames = new ArrayList<>();
-	    employeeNames.add("All");
-	    try (BufferedReader empReader = new BufferedReader(new FileReader(Main.logFilePath))) {
-	        String empLine;
-	        empReader.readLine();
-	        while ((empLine = empReader.readLine()) != null) {
-	            String[] empValues = empLine.split(",");
-
-	            employeeNames.add(empValues[0]);
 	        }
 	    } catch (IOException e) {
 	        e.printStackTrace();
@@ -431,7 +446,7 @@ public class StoreFrame extends JFrame {
 	        }
 	    }
 	}
-	private void showPayHistory() {
+	private void showPayHistory(List<String> employeeNames) {
 	    String[] columns = {"ID", "Employee Name", "Payment Method", "Status", "Total Amount", "Card Number", "Reference ID"};
 	    List<Object[]> data = new ArrayList<>();
 
@@ -458,21 +473,6 @@ public class StoreFrame extends JFrame {
 	            String refID = values[6];
 
 	            data.add(new Object[]{id, name, method, status, totalamount,card,refID});
-	        }
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
-
-	    List<String> employeeNames = new ArrayList<>();
-	    employeeNames.add("All");
-	    try (BufferedReader empReader = new BufferedReader(new FileReader(Main.userFilePath))) {
-	        String empLine;
-	        empReader.readLine();
-	        while ((empLine = empReader.readLine()) != null) {
-	            String[] empValues = empLine.split(",");
-	            if (empValues.length > 3 && empValues[4].equals("Employee")) {
-	                employeeNames.add(empValues[3]);
-	            }
 	        }
 	    } catch (IOException e) {
 	        e.printStackTrace();

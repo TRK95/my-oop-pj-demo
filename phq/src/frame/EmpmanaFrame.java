@@ -113,7 +113,6 @@ public class EmpmanaFrame extends JFrame {
         int option = JOptionPane.showConfirmDialog(this, passwordPanel, "Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (option == JOptionPane.CANCEL_OPTION) return; 
 
-        // Validate passwords
         String password = new String(passwordField.getPassword());
         String confirmPassword = new String(confirmPasswordField.getPassword());
 
@@ -180,63 +179,84 @@ public class EmpmanaFrame extends JFrame {
     }
     private void editUser() {
         int selectedRow = employeeTable.getSelectedRow();
-        if (selectedRow != -1) {
-            String id = (String) tableModel.getValueAt(selectedRow, 0);
-            String username = (String) tableModel.getValueAt(selectedRow, 1);
-            String password = (String) tableModel.getValueAt(selectedRow, 2);
-            String name = (String) tableModel.getValueAt(selectedRow, 3);
-            String[] roles = {"Employee", "Manager"};
-            String phone = (String) tableModel.getValueAt(selectedRow, 5);
-            String idCard = (String) tableModel.getValueAt(selectedRow, 6);
+        int selectedColumn = employeeTable.getSelectedColumn();
 
-            username = JOptionPane.showInputDialog(this, "Enter username:", username);
-            if (username == null) return;
-
-            JPasswordField passwordField = new JPasswordField();
-            JPasswordField confirmPasswordField = new JPasswordField();
-
-            JPanel passwordPanel = new JPanel();
-            passwordPanel.setLayout(new BoxLayout(passwordPanel, BoxLayout.Y_AXIS));
-            passwordPanel.add(new JLabel("Enter Password:"));
-            passwordPanel.add(passwordField);
-            passwordPanel.add(new JLabel("Confirm Password:"));
-            passwordPanel.add(confirmPasswordField);
-
-            int option = JOptionPane.showConfirmDialog(this, passwordPanel, "Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-            if (option == JOptionPane.CANCEL_OPTION) return;  // Cancel pressed
-
-            password = new String(passwordField.getPassword());
-            String confirmPassword = new String(confirmPasswordField.getPassword());
-
-            if (!password.equals(confirmPassword)) {
-                JOptionPane.showMessageDialog(this, "Passwords do not match. Please try again.");
+        if (selectedRow != -1 && selectedColumn != -1) {
+            if (selectedColumn == 0) {
+                JOptionPane.showMessageDialog(this, "ID cannot be edited.");
                 return;
             }
 
-            name = JOptionPane.showInputDialog(this, "Enter Name:", name);
-            if (name == null) return;
+            String currentValue = (String) tableModel.getValueAt(selectedRow, selectedColumn);
 
-            String role = (String) JOptionPane.showInputDialog(this, "Select Role:", "Role",
-                    JOptionPane.QUESTION_MESSAGE, null, roles, roles[0]);
-            if (role == null) return;
+            if (selectedColumn == 1) {
+                String newValue = JOptionPane.showInputDialog(this, "Edit username:", currentValue);
+                if (newValue == null) return;
+                if (isUsernameExist(newValue)) {
+                    JOptionPane.showMessageDialog(this, "Username already exists.");
+                    return;
+                }
+                tableModel.setValueAt(newValue, selectedRow, selectedColumn);
+            }
 
-            phone = getValidPhoneNumber();
-            if (phone == null) return;
+            if (selectedColumn == 2) {
+                JPasswordField passwordField = new JPasswordField();
+                JPasswordField confirmPasswordField = new JPasswordField();
 
-            idCard = getValidIdCard();
-            if (idCard == null) return;
+                JPanel passwordPanel = new JPanel();
+                passwordPanel.setLayout(new BoxLayout(passwordPanel, BoxLayout.Y_AXIS));
+                passwordPanel.add(new JLabel("Enter Password:"));
+                passwordPanel.add(passwordField);
+                passwordPanel.add(new JLabel("Confirm Password:"));
+                passwordPanel.add(confirmPasswordField);
 
-            tableModel.setValueAt(id, selectedRow, 0);
-            tableModel.setValueAt(username, selectedRow, 1);
-            tableModel.setValueAt(password, selectedRow, 2);
-            tableModel.setValueAt(name, selectedRow, 3);
-            tableModel.setValueAt(role, selectedRow, 4);
-            tableModel.setValueAt(phone, selectedRow, 5);
-            tableModel.setValueAt(idCard, selectedRow, 6);
+                int option = JOptionPane.showConfirmDialog(this, passwordPanel, "Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                if (option == JOptionPane.CANCEL_OPTION) return;
+
+                String password = new String(passwordField.getPassword());
+                String confirmPassword = new String(confirmPasswordField.getPassword());
+
+                if (password.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Password cannot be empty.");
+                    return;
+                }
+
+                if (!password.equals(confirmPassword)) {
+                    JOptionPane.showMessageDialog(this, "Passwords do not match. Please try again.");
+                    return;
+                }
+                tableModel.setValueAt(password, selectedRow, selectedColumn);
+            }
+
+            if (selectedColumn == 3) {
+                String newValue = JOptionPane.showInputDialog(this, "Edit name:", currentValue);
+                if (newValue == null) return;
+                tableModel.setValueAt(newValue, selectedRow, selectedColumn);
+            }
+
+            if (selectedColumn == 4) {
+                String[] roles = {"Employee", "Manager"};
+                String newRole = (String) JOptionPane.showInputDialog(this, "Select Role:", "Role",
+                        JOptionPane.QUESTION_MESSAGE, null, roles, currentValue);
+                if (newRole == null) return;
+                tableModel.setValueAt(newRole, selectedRow, selectedColumn);
+            }
+
+            if (selectedColumn == 5) {
+                String newPhone = getValidPhoneNumber();
+                if (newPhone == null) return;
+                tableModel.setValueAt(newPhone, selectedRow, selectedColumn);
+            }
+
+            if (selectedColumn == 6) {
+                String newIdCard = getValidIdCard();
+                if (newIdCard == null) return;
+                tableModel.setValueAt(newIdCard, selectedRow, selectedColumn);
+            }
 
             saveUsersToFile();
         } else {
-            JOptionPane.showMessageDialog(this, "Please select a user to edit.");
+            JOptionPane.showMessageDialog(this, "Please select a user and a column to edit.");
         }
     }
 

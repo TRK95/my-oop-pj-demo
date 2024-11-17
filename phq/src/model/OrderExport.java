@@ -82,9 +82,6 @@ public class OrderExport extends Order{
 	        item.setQuantity(quantity);
 	        productsList.add(item);
 	    }
-	    for(Product a : productsList) {
-	    	System.out.print(a);
-	    }
 	}
 	
 	public void viewCart(List<Product> productsData) {
