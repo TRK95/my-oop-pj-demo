@@ -2,26 +2,33 @@ package frame;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+
+import model.Manager;
+import model.Person;
+import model.Product;
+
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 public class EmpmanaFrame extends JFrame {
 	private JTable employeeTable;
     private DefaultTableModel tableModel;
     private JButton addButton, editButton, removeButton, backButton;
 	private ManagerFrame managerFrame;
+	private Manager manager;
 
-    public EmpmanaFrame(ManagerFrame managerFrame) {
+    public EmpmanaFrame(ManagerFrame managerFrame, Manager manager) {
     	this.managerFrame =  managerFrame;
+    	this.manager = manager;
         setTitle("Employee Manage.");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        String[] columnNames = {"ID", "Username", "Password", "Name", "Role", "Phone", "ID Card"};
-        tableModel = new DefaultTableModel(columnNames, 0);
         employeeTable = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(employeeTable);
         add(scrollPane, BorderLayout.CENTER);
@@ -45,35 +52,26 @@ public class EmpmanaFrame extends JFrame {
         actionPanel.add(backButton);
         backButton.addActionListener(e -> back());
 
-        loadUsersFromFile(Main.userFilePath);
+        displayAllUsers();
 
         setSize(800, 600);
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
-    private void loadUsersFromFile(String users) {
-        try (BufferedReader br = new BufferedReader(new FileReader(users))) {
-            String line;
-            
-            tableModel.setRowCount(0);
-            
-            while ((line = br.readLine()) != null) {
-                String[] data = line.split(",");
-                
-                if (data.length == 7) {
-                    String[] row = new String[7];
-                    for (int i = 0; i < 7; i++) {
-                        row[i] = data[i].trim();
-                    }
-                    tableModel.addRow(row);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error loading data from file: " + e.getMessage());
+    public void displayAllUsers() {
+        String[] columnNames = { "ID", "Username","Passwaord","Name","Role","Phone","idCard"};
+        tableModel = new DefaultTableModel(columnNames, 0);
+        employeeTable.setModel(tableModel);
+
+
+        List<Person> users = manager.getUsersFromFile();
+        for (Person user : users) {
+            String[] rowData = manager.getUserRowData(user);
+            tableModel.addRow(rowData);
         }
     }
+    
     public String generateNewUserID() {
         int maxID = 0;
 
@@ -136,7 +134,7 @@ public class EmpmanaFrame extends JFrame {
         if (idCard == null) return;
 
         tableModel.addRow(new String[]{id, username, password, name, role, phone, idCard});
-        saveUsersToFile();
+        manager.addUserToList(manager.createUserFromData(new String[]{id, username, password, name, role, phone, idCard}));
     }
 
     private String getValidPhoneNumber() {
@@ -253,8 +251,6 @@ public class EmpmanaFrame extends JFrame {
                 if (newIdCard == null) return;
                 tableModel.setValueAt(newIdCard, selectedRow, selectedColumn);
             }
-
-            saveUsersToFile();
         } else {
             JOptionPane.showMessageDialog(this, "Please select a user and a column to edit.");
         }
@@ -266,7 +262,6 @@ public class EmpmanaFrame extends JFrame {
             int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to remove this user?", "Confirm Removal", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
                 tableModel.removeRow(selectedRow);
-                saveUsersToFile();
             }
         } else {
             JOptionPane.showMessageDialog(this, "Please select a user to remove.");
@@ -276,24 +271,6 @@ public class EmpmanaFrame extends JFrame {
     private void back() {
     	this.setVisible(false);
     	managerFrame.setVisible(true);
-    }
-
-    private void saveUsersToFile() {
-        try (FileWriter writer = new FileWriter(Main.userFilePath)) {
-
-            for (int i = 0; i < tableModel.getRowCount(); i++) {
-                for (int j = 0; j < tableModel.getColumnCount(); j++) {
-                    writer.write(tableModel.getValueAt(i, j).toString());
-                    if (j < tableModel.getColumnCount() - 1) {
-                        writer.write(",");
-                    }
-                }
-                writer.write("\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error saving data to file.");
-        }
     }
 
 }

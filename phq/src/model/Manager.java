@@ -1,9 +1,13 @@
 package model;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import frame.Main;
@@ -14,8 +18,73 @@ public class Manager extends Employee {
     public Manager(String id, String username, String password, String name, String role, String phone, String idCard) {
         super(id, username, password, name, role, phone, idCard);
     }
+
+    public List<Person> getUsersFromFile() {
+        List<Person> users = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(Main.userFilePath))) {
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (line.startsWith("ID")) continue;
+                String[] values = line.split(",");
+                Person user = createUserFromData(values);
+                users.add(user);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
     
+    public Person createUserFromData(String[] data) {
+    	String id = data[0].trim();
+    	String username = data[1];
+    	String password = data[2];
+    	String name = data[3];
+    	String role = data[4];
+    	String phone = data[5];
+    	String idCard = data[6].trim();
+    	
+
+        switch (role.toLowerCase()) {
+            case "employee":
+                return new Employee(id,username, password,name,role,phone,idCard);
+            case "manager":
+                return new Manager(id,username,password,name,role,phone,idCard);
+            default:
+                throw new IllegalArgumentException("Unknown role: " + role);
+        }
+    }
     
+    public String[] getUserRowData(Person user) {
+        String[] data = new String[7];
+        data[0] = user.getId();
+        data[1] = user.getUsername();
+        data[2] = user.getPassword();
+        data[3] = user.getName();
+        data[4] = user.getRole();
+        data[5] = user.getPhone();
+        data[6] = user.getIdCard();
+        return data;
+    }
+    public void addUserToList(Person user ) {
+        List<Person> users = getUsersFromFile();
+        users.add(user);
+        writeUsersToFile(users);
+    }
+    private void writeUsersToFile(List<Person> users) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(Main.userFilePath))) {
+            writer.write("ID,username,password,name,role,phone,idCard");
+            writer.newLine();
+            for (Person user : users) {
+                String[] data = getUserRowData(user);
+                writer.write(String.join(",", data));
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void loadData(String filePath, Map<String, double[]> exportSummary,
                           Map<String, double[]> importSummary, String datePrefix) {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {

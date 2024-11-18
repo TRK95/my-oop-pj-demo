@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JFileChooser;
@@ -333,14 +334,16 @@ public class Employee extends Person {
         return maxId + 1;
     }
 
-    public void removeProduct(String productId) {
+    public void removeProduct(Product rm) {
         List<Product> products = getProductsFromFile();
         boolean productFound = false;
 
-        for (int i = 0; i < products.size(); i++) {
-            Product product = products.get(i);
-            if (product.getId().equals(productId)) {
-                products.remove(i);
+        Iterator<Product> iterator = products.iterator();
+
+        while (iterator.hasNext()) {
+            Product product = iterator.next();
+            if (product.getName().equals(rm.getName())) { 
+                iterator.remove(); 
                 productFound = true;
                 break;
             }
@@ -352,6 +355,7 @@ public class Employee extends Person {
             JOptionPane.showMessageDialog(employeeframe, "Product not found.");
         }
     }
+
     public boolean productMatchesQuery(Product product, String query) {
         query = query.toLowerCase();
         

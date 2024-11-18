@@ -204,22 +204,49 @@ public class EmployeeFrame extends JFrame {
     }
     private void removeProduct() {
         int selectedRow = productsTable.getSelectedRow();
-
         if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Select 1 product to remove.");
+            JOptionPane.showMessageDialog(this, "Select one product to remove.");
             return;
         }
-
         String id = (String) tableModel.getValueAt(selectedRow, 0);
+        String type = (String) tableModel.getValueAt(selectedRow, 1);
         String name = (String) tableModel.getValueAt(selectedRow, 2);
 
-        int confirmation = JOptionPane.showConfirmDialog(this, "Are you sure to remove  " + name + "?", "Confirm Removal", JOptionPane.YES_NO_OPTION);
+        String price = (String)(tableModel.getValueAt(selectedRow, 3).toString());
+        String quantity = (String)(tableModel.getValueAt(selectedRow, 4).toString());
+        String inputPrice = (String)(tableModel.getValueAt(selectedRow, 5).toString());
+
+        String brand = (String) tableModel.getValueAt(selectedRow, 6);
+        String suitAge = (String) tableModel.getValueAt(selectedRow, 7);
+        String material = (String) tableModel.getValueAt(selectedRow, 8);
+        String author = (String) tableModel.getValueAt(selectedRow, 9);
+        String isbn = (String) tableModel.getValueAt(selectedRow, 10);
+
+        String publicationYear = tableModel.getValueAt(selectedRow, 11) != null
+            ? (String)(tableModel.getValueAt(selectedRow, 11).toString())
+            : "";
+
+        String publisher = (String) tableModel.getValueAt(selectedRow, 12);
+
+
+        int confirmation = JOptionPane.showConfirmDialog(
+            this,
+            "Are you sure to remove " + name + "?",
+            "Confirm Removal",
+            JOptionPane.YES_NO_OPTION
+        );
+
         if (confirmation == JOptionPane.YES_OPTION) {
-            employee.removeProduct(id);
-            displayAllProducts();
-            JOptionPane.showMessageDialog(this, name + " remove successfully.");
+            String[] data = new String[] {
+                id,type, name, price,quantity,inputPrice,brand,suitAge, material,author,isbn,publicationYear,publisher
+            };
+            Product rm = employee.createProductFromData(data);
+            employee.removeProduct(rm);
+            JOptionPane.showMessageDialog(this, name + " removed successfully.");
+            tableModel.removeRow(selectedRow);
         }
     }
+
     private void addToCart() {
         int selectedRow = productsTable.getSelectedRow();
         if (selectedRow != -1) {

@@ -64,7 +64,7 @@ public class ManagerFrame extends JFrame {
     }
 
     private void showEmployees() {
-        EmpmanaFrame empmanaFrame = new EmpmanaFrame(this);
+        EmpmanaFrame empmanaFrame = new EmpmanaFrame(this,manager);
         empmanaFrame.setVisible(true);
         this.setVisible(false);
     }
