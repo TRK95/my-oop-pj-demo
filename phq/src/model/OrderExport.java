@@ -166,7 +166,9 @@ public class OrderExport extends Order{
 				setID(payMent.getID());
 				super.saveToCSV(getID(), productsList, employee.getName());
 				getBill();
-				employee.removeProductsFromList(productsList);
+				for(Product rm : productsList) {
+					employee.updateProductChange(rm,"remove");
+				}
 				productsList.clear();
         }}else {
         	JOptionPane.showMessageDialog(null, "Empty Cart !" );

@@ -7,8 +7,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import javax.swing.JOptionPane;
 
 import frame.Main;
 
@@ -56,6 +59,11 @@ public class Manager extends Employee {
         }
     }
     
+    
+    
+    
+    
+    //thay 4 void bang 1 void
     public String[] getUserRowData(Person user) {
         String[] data = new String[7];
         data[0] = user.getId();
@@ -67,17 +75,39 @@ public class Manager extends Employee {
         data[6] = user.getIdCard();
         return data;
     }
-    public void addUserToList(Person user ) {
+    public void updateUserChange(Person user,String change) {
         List<Person> users = getUsersFromFile();
-        users.add(user);
-        writeUsersToFile(users);
-    }
-    private void writeUsersToFile(List<Person> users) {
+        if(change.equals("add")) {
+            users.add(user);
+        }else if (change.equals("remove")) {
+
+
+            Iterator<Person> iterator = users.iterator();
+
+            while (iterator.hasNext()) {
+                Person delete = iterator.next();
+                if (delete.getName().equals(user.getName())) { 
+                    iterator.remove(); 
+                    break;
+                }
+            }
+        }else if (change.equals("edit")) {
+        	for (Person edit :users) {
+        		if(edit.getId().equals(user.getId())) {
+        			edit.setName(user.getName());
+        			edit.setRole(user.getRole());
+        			edit.setUsername(user.getUsername());
+        			edit.setPassword(user.getPassword());
+        			edit.setPhone(user.getPhone());
+        			edit.setIdCard(user.getIdCard());
+        		}
+        	}
+        }
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(Main.userFilePath))) {
             writer.write("ID,username,password,name,role,phone,idCard");
             writer.newLine();
-            for (Person user : users) {
-                String[] data = getUserRowData(user);
+            for (Person tmp : users) {
+                String[] data = getUserRowData(tmp);
                 writer.write(String.join(",", data));
                 writer.newLine();
             }
@@ -85,7 +115,19 @@ public class Manager extends Employee {
             e.printStackTrace();
         }
     }
-    public void loadData(String filePath, Map<String, double[]> exportSummary,
+    
+    
+    // doi ten void cho hop ly
+    /////////
+    ////////
+    ///////
+    //////
+    /////
+    ////
+    ///
+    //
+    //
+    public void calculateIncomeAndOutcome(String filePath, Map<String, double[]> exportSummary,
                           Map<String, double[]> importSummary, String datePrefix) {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -115,7 +157,7 @@ public class Manager extends Employee {
                         exportSummary.put(date, totals);
                     }
                 }else if (datePrefix.contains("All")){
-                	if(!date.equals(datePrefix.substring(0,4))) continue;
+                	if(!(date.substring(0,4)).equals(datePrefix.substring(0,4))) continue;
                 	double price = id.startsWith("im") ? Double.parseDouble(values[5]) : Double.parseDouble(values[3]);
                     int quantity = Integer.parseInt(values[4]);
                     if (id.startsWith("im")) {
@@ -153,7 +195,7 @@ public class Manager extends Employee {
         }
     }
     
-    public void loadExpenses(String filePath, Map<String, Double> expenseDetails, String datePrefix) {
+    public void calculateExpenses(String filePath, Map<String, Double> expenseDetails, String datePrefix) {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             boolean isFirstLine = true;

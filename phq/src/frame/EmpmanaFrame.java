@@ -4,15 +4,11 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import model.Employee;
 import model.Manager;
 import model.Person;
-import model.Product;
-
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+
 import java.util.List;
 
 public class EmpmanaFrame extends JFrame {
@@ -60,7 +56,7 @@ public class EmpmanaFrame extends JFrame {
     }
 
     public void displayAllUsers() {
-        String[] columnNames = { "ID", "Username","Passwaord","Name","Role","Phone","idCard"};
+        String[] columnNames = { "ID", "Username","Password","Name","Role","Phone","idCard"};
         tableModel = new DefaultTableModel(columnNames, 0);
         employeeTable.setModel(tableModel);
 
@@ -90,24 +86,20 @@ public class EmpmanaFrame extends JFrame {
     }
     private void addUser() {
         String id = generateNewUserID();
-        
         String username = JOptionPane.showInputDialog(this, "Enter username :");
         if (username == null) return;
-
         if (isUsernameExist( username)) {
             JOptionPane.showMessageDialog(this, "Username existed. Retry.");
             return;
         }
         JPasswordField passwordField = new JPasswordField();
         JPasswordField confirmPasswordField = new JPasswordField();
-
         JPanel passwordPanel = new JPanel();
         passwordPanel.setLayout(new BoxLayout(passwordPanel, BoxLayout.Y_AXIS));
         passwordPanel.add(new JLabel("Password:"));
         passwordPanel.add(passwordField);
         passwordPanel.add(new JLabel("Confirm password:"));
         passwordPanel.add(confirmPasswordField);
-
         int option = JOptionPane.showConfirmDialog(this, passwordPanel, "Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (option == JOptionPane.CANCEL_OPTION) return; 
 
@@ -127,20 +119,21 @@ public class EmpmanaFrame extends JFrame {
                 JOptionPane.QUESTION_MESSAGE, null, roles, roles[0]);
         if (role == null) return;
 
-        String phone = getValidPhoneNumber();
+        String phone = getValidPhoneNumber("");
         if (phone == null) return;
 
-        String idCard = getValidIdCard();
+        String idCard = getValidIdCard("");
         if (idCard == null) return;
 
         tableModel.addRow(new String[]{id, username, password, name, role, phone, idCard});
-        manager.addUserToList(manager.createUserFromData(new String[]{id, username, password, name, role, phone, idCard}));
+        manager.updateUserChange(manager.createUserFromData(new String[]{id, username, password, name, role, phone, idCard}),"add");
+        displayAllUsers();
     }
 
-    private String getValidPhoneNumber() {
+    private String getValidPhoneNumber(String currentPhone) {
         String phone;
         while (true) {
-            phone = JOptionPane.showInputDialog(this, "Enter phone number(10 or 11 digits and starts with 0):");
+            phone = JOptionPane.showInputDialog(this, "Enter phone number(10 or 11 digits and starts with 0):",currentPhone);
             if (phone == null) return null;
             else if ( phone.matches("^0\\d{9,10}$")) {
                 break;
@@ -151,10 +144,10 @@ public class EmpmanaFrame extends JFrame {
         return phone;
     }
 
-    private String getValidIdCard() {
+    private String getValidIdCard(String currentCard) {
         String idCard;
         while (true) {
-            idCard = JOptionPane.showInputDialog(this, "Enter idCard(12 digits):");
+            idCard = JOptionPane.showInputDialog(this, "Enter idCard(12 digits):",currentCard);
             if (idCard == null) return null;
             else if ( idCard.matches("^\\d{12}$")) {
                 break;
@@ -180,6 +173,15 @@ public class EmpmanaFrame extends JFrame {
         int selectedColumn = employeeTable.getSelectedColumn();
 
         if (selectedRow != -1 && selectedColumn != -1) {
+        	String[] tmp = new String [7];
+        	tmp[0] = (String) employeeTable.getValueAt(selectedRow, 0);
+        	tmp[1] = (String) employeeTable.getValueAt(selectedRow, 1);
+        	tmp[2] = (String) employeeTable.getValueAt(selectedRow, 2);
+        	tmp[3] = (String) employeeTable.getValueAt(selectedRow, 3);
+        	tmp[4] = (String) employeeTable.getValueAt(selectedRow, 4);
+        	tmp[5] = (String) employeeTable.getValueAt(selectedRow, 5);
+        	tmp[6] = (String) employeeTable.getValueAt(selectedRow, 6);
+        	Person user = manager.createUserFromData(tmp);
             if (selectedColumn == 0) {
                 JOptionPane.showMessageDialog(this, "ID cannot be edited.");
                 return;
@@ -194,9 +196,8 @@ public class EmpmanaFrame extends JFrame {
                     JOptionPane.showMessageDialog(this, "Username already exists.");
                     return;
                 }
-                tableModel.setValueAt(newValue, selectedRow, selectedColumn);
+                user.setUsername(newValue);
             }
-
             if (selectedColumn == 2) {
                 JPasswordField passwordField = new JPasswordField();
                 JPasswordField confirmPasswordField = new JPasswordField();
@@ -223,13 +224,16 @@ public class EmpmanaFrame extends JFrame {
                     JOptionPane.showMessageDialog(this, "Passwords do not match. Please try again.");
                     return;
                 }
-                tableModel.setValueAt(password, selectedRow, selectedColumn);
+                if (currentValue.equals(password)) {
+                    JOptionPane.showMessageDialog(this, "Passwords not different from the old one. Please try again.");
+                }
+                user.setPassword(confirmPassword);
             }
 
             if (selectedColumn == 3) {
                 String newValue = JOptionPane.showInputDialog(this, "Edit name:", currentValue);
                 if (newValue == null) return;
-                tableModel.setValueAt(newValue, selectedRow, selectedColumn);
+                user.setName(newValue);
             }
 
             if (selectedColumn == 4) {
@@ -237,20 +241,22 @@ public class EmpmanaFrame extends JFrame {
                 String newRole = (String) JOptionPane.showInputDialog(this, "Select Role:", "Role",
                         JOptionPane.QUESTION_MESSAGE, null, roles, currentValue);
                 if (newRole == null) return;
-                tableModel.setValueAt(newRole, selectedRow, selectedColumn);
+                user.setRole(newRole);
             }
 
             if (selectedColumn == 5) {
-                String newPhone = getValidPhoneNumber();
+                String newPhone = getValidPhoneNumber(currentValue);
                 if (newPhone == null) return;
-                tableModel.setValueAt(newPhone, selectedRow, selectedColumn);
+            	user.setPhone(newPhone);
             }
 
             if (selectedColumn == 6) {
-                String newIdCard = getValidIdCard();
+                String newIdCard = getValidIdCard(currentValue);
                 if (newIdCard == null) return;
-                tableModel.setValueAt(newIdCard, selectedRow, selectedColumn);
+                user.setIdCard(newIdCard);
             }
+            manager.updateUserChange(user, "edit");
+            displayAllUsers();
         } else {
             JOptionPane.showMessageDialog(this, "Please select a user and a column to edit.");
         }
@@ -259,9 +265,18 @@ public class EmpmanaFrame extends JFrame {
     private void removeUser() {
         int selectedRow = employeeTable.getSelectedRow();
         if (selectedRow != -1) {
+        	String[] user = new String [7];
+        	user[0] = (String) employeeTable.getValueAt(selectedRow, 0);
+        	user[1] = (String) employeeTable.getValueAt(selectedRow, 1);
+        	user[2] = (String) employeeTable.getValueAt(selectedRow, 2);
+        	user[3] = (String) employeeTable.getValueAt(selectedRow, 3);
+        	user[4] = (String) employeeTable.getValueAt(selectedRow, 4);
+        	user[5] = (String) employeeTable.getValueAt(selectedRow, 5);
+        	user[6] = (String) employeeTable.getValueAt(selectedRow, 6);
             int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to remove this user?", "Confirm Removal", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
-                tableModel.removeRow(selectedRow);
+            	manager.updateUserChange(manager.createUserFromData(user), "remove");
+            	displayAllUsers();
             }
         } else {
             JOptionPane.showMessageDialog(this, "Please select a user to remove.");

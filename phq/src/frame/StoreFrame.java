@@ -36,9 +36,7 @@ public class StoreFrame extends JFrame {
             empReader.readLine(); 
             while ((empLine = empReader.readLine()) != null) {
                 String[] empValues = empLine.split(",");
-                if (empValues.length > 3 && empValues[4].equals("Employee")) {
                     employeeNameSet.add(empValues[3]);
-                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -87,7 +85,6 @@ public class StoreFrame extends JFrame {
 	    importTable = new JTable();
 	    exportTable = new JTable();
 	    expenseTable = new JTable();
-
 	    JPanel mainPanel = new JPanel();
 	    mainPanel.setLayout(new BorderLayout());
 
@@ -111,18 +108,15 @@ public class StoreFrame extends JFrame {
 	    expenselabel.setFont(textFont);
 	    expensePanel.add(expenselabel, BorderLayout.NORTH);
 	    expensePanel.add(new JScrollPane(expenseTable), BorderLayout.CENTER);
-
 	    tablePanel.add(importPanel);
 	    tablePanel.add(exportPanel);
 	    tablePanel.add(expensePanel);
-
 	    JPanel filterPanel = new JPanel();
 	    filterPanel.add(new JLabel("Month:"));
 	    filterPanel.add(monthComboBox);
 	    filterPanel.add(new JLabel("Year:"));
 	    filterPanel.add(yearField);
 	    filterPanel.add(filterButton);
-
 	    mainPanel.add(filterPanel, BorderLayout.NORTH);
 	    mainPanel.add(tablePanel, BorderLayout.CENTER);
 
@@ -154,10 +148,10 @@ public class StoreFrame extends JFrame {
 	    summaryPanel.add(totalSellLabel);
 	    summaryPanel.add(totalExpenseLabel);
 	    summaryPanel.add(netRevenueLabel);
-	    summaryPanel.add(backButton);
 	    summaryPanel.add(shopHistoryButton);
 	    summaryPanel.add(logHistoryButton);
 	    summaryPanel.add(payHistoryButton);
+	    summaryPanel.add(backButton);
 
 	    mainPanel.add(summaryPanel, BorderLayout.SOUTH);
 
@@ -176,8 +170,8 @@ public class StoreFrame extends JFrame {
         Map<String, double[]> outcomeSummary = new HashMap<>();
         Map<String, Double> expenseDetails = new HashMap<>();
 
-        manager.loadData(Main.ordersFilePath, incomeSummary, outcomeSummary, selectedDatePrefix);
-        manager.loadExpenses(Main.expensesFilePath, expenseDetails, selectedDatePrefix);
+        manager.calculateIncomeAndOutcome(Main.ordersFilePath, incomeSummary, outcomeSummary, selectedDatePrefix);
+        manager.calculateExpenses(Main.expensesFilePath, expenseDetails, selectedDatePrefix);
         
         Map<String, Double> employeeSalaries = manager.calculateSalaries(selectedDatePrefix);
 
@@ -196,7 +190,6 @@ public class StoreFrame extends JFrame {
         for (Map.Entry<String, Double> entry : expenseList) {
             sortedExpenseDetails.put(entry.getKey(), entry.getValue());
         }
-
         exportTable.setModel(createTableModel(incomeSummary));
         importTable.setModel(createTableModel(outcomeSummary)); 
         expenseTable.setModel(createExpenseTableModel(sortedExpenseDetails));
@@ -206,7 +199,6 @@ public class StoreFrame extends JFrame {
 
     private DefaultTableModel createTableModel(Map<String, double[]> data) {
                 Map<String, double[]> sortedData = new TreeMap<>(data);
-
         String[] columnNames = {"Date", "Total Amount", "Total Price"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
@@ -317,7 +309,6 @@ public class StoreFrame extends JFrame {
         northPanel.add(new JLabel("Employee:"));
         northPanel.add(employeeComboBox);
         northPanel.add(filterButton);
-
         tableFrame.add(northPanel, BorderLayout.NORTH);
 
         JPanel southPanel = new JPanel();
@@ -463,7 +454,6 @@ public class StoreFrame extends JFrame {
 	                }
 	                values = paddedValues;
 	            }
-
 	            String id = values[0];
 	            String name = values[1];
 	            String method = values[2];
@@ -545,7 +535,6 @@ public class StoreFrame extends JFrame {
 	        String method1 = row[2].toString();
 	        String status1 = row[3].toString();
 	        
-
 	        boolean matchesType = type.equals("All") || id.startsWith(type);
 	        boolean matchesMonth = month.equals("All") || id.substring(6, 8).equals(month);
 	        boolean matchesYear = year.isEmpty() || id.substring(2, 6).equals(year);

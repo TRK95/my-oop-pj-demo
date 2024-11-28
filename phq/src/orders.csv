@@ -21,3 +21,10 @@ im20241118005,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Jane Doe
 im20241118005,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Jane Doe
 im20241118005,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Jane Doe
 im20241118006,toy,Wooden Train Set,40.0,22,30.0,BrandAB,3+,Wood,,,,,Jane Doe
+im20241128007,book,effective java,35.0,10,25.0,,,,"Kyle Simpson",978-1491950294,2018,O'Reilly Media,Quan ly ne
+im20241128007,toy,Lego Set,60.0,10,40.0,LEGO,5+,Plastic,,,,,Quan ly ne
+im20241128007,stationery,Notebook,3.5,40,2.0,BrandA,,Paper,,,,,Quan ly ne
+im20241128007,toy,Action Figure,15.0,11,10.0,BrandB,6+,Plastic,,,,,Quan ly ne
+im20241128007,book,Java Concurrency in Practice,35.0,13,25.0,,,,"Brian Goetz",978-0321349606,2006,Addison-Wesley,Quan ly ne
+im20241128007,toy,Lgo Set,59.99,10,40.0,LEGO,5+,Plastic,,,,,Quan ly ne
+im20241128008,toy,Chin Chin,999.0,1,99.0,TTYKhanh,18,plastic,,,,,Quan ly ne

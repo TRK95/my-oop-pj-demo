@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -62,17 +64,17 @@ public class EmployeeFrame extends JFrame {
         searchField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                updateSearchSuggestions();
+                searchProduct();
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                updateSearchSuggestions();
+                searchProduct();
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                updateSearchSuggestions();
+                searchProduct();
             }
         });
         searchPanel.add(new JLabel("Search: "), gbc);
@@ -90,7 +92,7 @@ public class EmployeeFrame extends JFrame {
         JButton addToCartButton = new JButton("Add to Cart");
         JButton viewCartButton = new JButton("View Cart");
         JButton checkoutButton = new JButton("Check out");
-        addProductButton.addActionListener(e -> showAddProductOptions());		
+        addProductButton.addActionListener(e -> addProducts());		
         backButton.addActionListener(e -> back());
         removeProductButton.addActionListener(e -> removeProduct());
         addToCartButton.addActionListener(e -> addToCart());
@@ -115,7 +117,7 @@ public class EmployeeFrame extends JFrame {
         displayAllProducts();
         products = employee.getProductsFromFile();
     }
-    private void showAddProductOptions() {
+    private void addProducts() {
         Object[] options = {"Add by CSV", "Add by hand", "Add by ID"};
         int choice = JOptionPane.showOptionDialog(this,
                 "How would you like to add products:",
@@ -128,17 +130,22 @@ public class EmployeeFrame extends JFrame {
 
         switch (choice) {
             case 0:
-                employee.addProductsFromCSV();
+                JFileChooser fileChooser = new JFileChooser();
+                int returnValue = fileChooser.showOpenDialog(this);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = fileChooser.getSelectedFile();
+                employee.addProducts(selectedFile);
                 displayAllProducts();
-                break;
+                break;}
             case 1:
-                employee.addProductByHand();
+                employee.addProducts();
                 displayAllProducts();
                 break;
             default:
                 break;
             case 2:
-            	employee.addProductByID();
+                String id = JOptionPane.showInputDialog("Enter ID :");
+            	employee.addProducts(id);
             	displayAllProducts();
         }
     }
@@ -184,7 +191,8 @@ public class EmployeeFrame extends JFrame {
             tableModel.addRow(rowData);
         }
     }
-    protected void updateSearchSuggestions() {
+    //doi ten nua ne
+    protected void searchProduct() {
         String query = searchField.getText().trim().toLowerCase();
         tableModel.setRowCount(0); 
 
@@ -241,7 +249,7 @@ public class EmployeeFrame extends JFrame {
                 id,type, name, price,quantity,inputPrice,brand,suitAge, material,author,isbn,publicationYear,publisher
             };
             Product rm = employee.createProductFromData(data);
-            employee.removeProduct(rm);
+            employee.updateProductChange(rm,"delete");
             JOptionPane.showMessageDialog(this, name + " removed successfully.");
             tableModel.removeRow(selectedRow);
         }

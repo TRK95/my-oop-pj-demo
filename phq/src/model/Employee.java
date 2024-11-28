@@ -9,10 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-
 import frame.EmployeeFrame;
 import frame.Main;
 
@@ -27,11 +24,8 @@ public class Employee extends Person {
         this.newlyAddedProducts = new ArrayList<>();
     }
 
-    public void addProductsFromCSV() {
-        JFileChooser fileChooser = new JFileChooser();
-        int returnValue = fileChooser.showOpenDialog(employeeframe);
-        if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
+    public void addProducts(File selectedFile) {
+
             StringBuilder addedProductsInfo = new StringBuilder("Added Products:\n");
 
             try (BufferedReader br = new BufferedReader(new FileReader(selectedFile))) {
@@ -53,10 +47,8 @@ public class Employee extends Person {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(employeeframe, "Error reading from file: " + e.getMessage());
             }
-         }
        }     
-    public void addProductByID() {
-        String id = JOptionPane.showInputDialog("Enter ID :");
+    public void addProducts(String id) {
         if (id == null || id.isEmpty()) {
             JOptionPane.showMessageDialog(employeeframe, "ID must not white sapce.");
             return;
@@ -91,7 +83,7 @@ public class Employee extends Person {
     }
 
 
-    public void addProductByHand() {
+    public void addProducts() {
         int id = getNextProductId();
         String[] types = {"Book", "Toy", "Stationery"};
         String type = (String) JOptionPane.showInputDialog(employeeframe, "Choose production type :", "Production type",
@@ -166,7 +158,6 @@ public class Employee extends Person {
             
         }
     }
-
     public List<Product> getProductsFromFile() {
         List<Product> products = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(Main.productFilePath))) {
@@ -229,46 +220,59 @@ public class Employee extends Person {
         }
     }
 
-    void addProductToList(Product product ) {
+// thay 4 ham bang 1 ham add,remove,edit,remove in list
+    
+    
+    public void updateProductChange(Product product,String change) {
         List<Product> products = getProductsFromFile();
-        boolean productExists = false;
+    	if (change.equals("add")) {
+    		boolean productExists = false;
 
-        for (Product existingProduct : products) {
-            if (existingProduct.getName().equals(product.getName())) {
-                existingProduct.setQuantity(existingProduct.getQuantity() + product.getQuantity());
-                existingProduct.setInputPrice(product.getInputPrice());
-                existingProduct.setPrice(product.getPrice());
-                productExists = true;
-                break;
-            }
-        }
-        if (!productExists) {
-            product.setId(String.valueOf(getNextProductId()));
-            products.add(product);
-        }
-        writeProductsToFile(products);
-    }
-
-    void removeProductsFromList(List<Product> soldProducts) {
-        List<Product> products = getProductsFromFile();
-        for (Product soldProduct : soldProducts) {
             for (Product existingProduct : products) {
-                if (existingProduct.getName().equals(soldProduct.getName())) {
-                    int newQuantity = existingProduct.getQuantity() - soldProduct.getQuantity();
-                        existingProduct.setQuantity(newQuantity);
+                if (existingProduct.getName().equals(product.getName())) {
+                    existingProduct.setQuantity(existingProduct.getQuantity() + product.getQuantity());
+                    existingProduct.setInputPrice(product.getInputPrice());
+                    existingProduct.setPrice(product.getPrice());
+                    productExists = true;
                     break;
                 }
             }
-        }
-        writeProductsToFile(products);
-    }
+            if (!productExists) {
+                product.setId(String.valueOf(getNextProductId()));
+                products.add(product);
+            }
+    	}else if(change.equals("remove")) {
+                for (Product existingProduct : products) {
+                    if (existingProduct.getName().equals(product.getName())) {
+                        int newQuantity = existingProduct.getQuantity() - product.getQuantity();
+                            existingProduct.setQuantity(newQuantity);
+                        break;
+                    }
+                }
+    		
+    	}else if (change.equals("delete")) {
+            boolean productFound = false;
 
-    private void writeProductsToFile(List<Product> products) {
+            Iterator<Product> iterator = products.iterator();
+
+            while (iterator.hasNext()) {
+                Product delete = iterator.next();
+                if (delete.getName().equals(product.getName())) { 
+                    iterator.remove(); 
+                    productFound = true;
+                    break;
+                }
+            }
+
+            if (!productFound) {            
+            	JOptionPane.showMessageDialog(employeeframe, "Product not found.");
+            }
+    	}
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(Main.productFilePath))) {
             writer.write("ID,Type,Name,Price,Quantity,InputPrice,Brand,SuitAge,Material,Author,ISBN,PublicationYear,Publisher");
             writer.newLine();
-            for (Product product : products) {
-                String[] data = getProductRowData(product);
+            for (Product tmp : products) {
+                String[] data = getProductRowData(tmp);
                 writer.write(String.join(",", data));
                 writer.newLine();
             }
@@ -276,7 +280,7 @@ public class Employee extends Person {
             e.printStackTrace();
         }
     }
-
+    
     public String[] getProductRowData(Product product) {
         String[] data = new String[13];
         data[0] = product.getId();
@@ -332,28 +336,6 @@ public class Employee extends Person {
         }
         
         return maxId + 1;
-    }
-
-    public void removeProduct(Product rm) {
-        List<Product> products = getProductsFromFile();
-        boolean productFound = false;
-
-        Iterator<Product> iterator = products.iterator();
-
-        while (iterator.hasNext()) {
-            Product product = iterator.next();
-            if (product.getName().equals(rm.getName())) { 
-                iterator.remove(); 
-                productFound = true;
-                break;
-            }
-        }
-
-        if (productFound) {
-            writeProductsToFile(products);
-        } else {
-            JOptionPane.showMessageDialog(employeeframe, "Product not found.");
-        }
     }
 
     public boolean productMatchesQuery(Product product, String query) {

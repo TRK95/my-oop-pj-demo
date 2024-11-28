@@ -1,14 +1,13 @@
 package frame;
 
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.Toolkit;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,6 +17,7 @@ import javax.swing.JTextField;
 
 import model.Employee;
 import model.Manager;
+import model.Person;
 
 public class LoginFrame extends JFrame {
 	private JTextField userIdField;
@@ -36,7 +36,7 @@ public class LoginFrame extends JFrame {
         passwordField = new JPasswordField(15);
         JButton loginButton = new JButton("Login");
 
-        setLayout(new GridLayout(4, 2));
+        setLayout(new GridLayout(4, 1, 0, 15));
         add(userIdLabel);
         add(userIdField);
         add(passwordLabel);
@@ -47,9 +47,14 @@ public class LoginFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 login();
+                userIdField.setText("");
+                passwordField.setText("");
             }
         });    
     }
+    
+    // o day bo duoc 1 void ne
+    
     private void login() {
         String username = userIdField.getText();
         String password = new String(passwordField.getPassword());
@@ -59,9 +64,25 @@ public class LoginFrame extends JFrame {
             return;
         }
         try {
-            String[] userDetails = authenticate(username, password);
-            if (userDetails != null) {
-                openRoleBasedFrame(userDetails[4], userDetails);
+            Person user = authenticate(username, password);
+            if (user != null) {
+                Employee employee = new Employee(user.getId(), username, password, user.getName(), "employee", user.getPhone(), user.getIdCard());
+            	switch (user.getRole().toLowerCase()) {
+ 
+                case "employee":
+                    EmployeeFrame employeeFrame = new EmployeeFrame(this, employee);
+                    employeeFrame.setVisible(true);
+                    break;
+                case "manager":
+                    Manager manager = new Manager(user.getId(), username, password, user.getName(), "manager", user.getPhone(), user.getIdCard());
+                	ManagerFrame managerFrame = new ManagerFrame(this, manager,employee);
+                    managerFrame.setVisible(true);
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(this, "Role not recognized: " + user.getRole(), "Role Error", JOptionPane.ERROR_MESSAGE);
+                    break;
+            }
+            	dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid User ID or Password.", "Login Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -71,7 +92,7 @@ public class LoginFrame extends JFrame {
         }
     }
 
-    private String[] authenticate(String username, String password) throws IOException {
+    private Person authenticate(String username, String password) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(Main.userFilePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -88,37 +109,10 @@ public class LoginFrame extends JFrame {
                 String idCard = record[6].trim();
 
                 if (csvUsername.equals(username) && csvPassword.equals(password)) {
-                    return new String[] {csvId, csvUsername, csvPassword, name, role, phone, idCard};
+                    return new Person (csvId, csvUsername, csvPassword, name, role, phone, idCard);
                 }
             }
         }
         return null; 
     }
-    private void openRoleBasedFrame(String role, String[] userDetails) {
-        String id = userDetails[0];
-        String username = userDetails[1];
-        String password = userDetails[2];
-        String name = userDetails[3];
-        String phone = userDetails[5];
-        String idCard = userDetails[6];
-
-        switch (role.toLowerCase()) {
-            case "employee":
-                Employee employee = new Employee(id, username, password, name, "employee", phone, idCard);
-                EmployeeFrame employeeFrame = new EmployeeFrame(this, employee);
-                employeeFrame.setVisible(true);
-                break;
-            case "manager":
-                Manager manager = new Manager(id, username, password, name, "manager", phone, idCard);
-                Employee employee1 = new Employee(id, username, password, name, "manager", phone, idCard);
-            	ManagerFrame managerFrame = new ManagerFrame(this, manager,employee1);
-                managerFrame.setVisible(true);
-                break;
-            default:
-                JOptionPane.showMessageDialog(this, "Role not recognized: " + role, "Role Error", JOptionPane.ERROR_MESSAGE);
-                break;
-        }
-        dispose();
-    }
-
 }

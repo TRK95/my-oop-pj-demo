@@ -1,8 +1,6 @@
 package frame;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -35,49 +33,29 @@ public class ManagerFrame extends JFrame {
         buttonPanel.add(logoutButton);
         add(buttonPanel, BorderLayout.CENTER);
 
-        logoutButton.addActionListener(e -> logout());
-        productsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                showProducts();
-            }
-        });
-
-        employeesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                showEmployees();
-            }
-        });
-
-        storeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                showStore();
-            }
-        });
+        logoutButton.addActionListener(e -> managerSelection(0));
+        employeesButton.addActionListener(e -> managerSelection(2));
+        storeButton.addActionListener(e -> managerSelection(3));
+        productsButton.addActionListener(e -> managerSelection(1));
     }
-    private void showProducts() {
-        ProductFrame productFrame = new ProductFrame(loginFrame,this,employee );
-        productFrame.setVisible(true);
-        this.setVisible(false);
-    }
-
-    private void showEmployees() {
-        EmpmanaFrame empmanaFrame = new EmpmanaFrame(this,manager);
-        empmanaFrame.setVisible(true);
-        this.setVisible(false);
-    }
-
-    private void showStore() {
-    	StoreFrame storeFrame = new StoreFrame(manager,this);
-    	storeFrame.setVisible(true);
-    	this.setVisible(false);
-    }
-
-    private void logout() {
-        setVisible(false);
-        loginFrame.setVisible(true);
+    // thay the 4 void bang 1 void
+    private void managerSelection(int choice) {
+    	if (choice == 0) {     // logout
+            setVisible(false);
+            loginFrame.setVisible(true);
+    	}else if (choice == 1) {
+            ProductFrame productFrame = new ProductFrame(loginFrame,this,employee ); // show products
+            productFrame.setVisible(true);
+            this.setVisible(false);
+    	}else if(choice == 2) {
+            EmpmanaFrame empmanaFrame = new EmpmanaFrame(this,manager);   // show employees
+            empmanaFrame.setVisible(true);
+            this.setVisible(false);
+    	}else if (choice == 3) {
+        	StoreFrame storeFrame = new StoreFrame(manager,this);  // show store
+        	storeFrame.setVisible(true);
+        	this.setVisible(false);
+    	}
     }
 
 }
